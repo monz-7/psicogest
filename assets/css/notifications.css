@@ -1,0 +1,154 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA PÁGINA DE LAS NOTIFICACIONES
+/* ========================================================================== */
+
+/* ==========================================================================
+/* BOTÓN DE ACCIÓN MASIVA (LIMPIAR TODAS)
+/* ========================================================================== */
+
+.del-all-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  border: none;
+  background: none;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Icono dentro del botón */
+.del-all-button svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: var(--primary-color);
+  transform: translateX(-6px);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* BOTONES CUANDO SE INTERACTÚA */
+.del-all-button:hover {
+  transform: scale(var(--hover-scale-soft));
+}
+
+.del-all-button svg:hover {
+  transform: scale(var(--hover-scale-strong));
+}
+
+/* BOTÓN EN ESTADO ACTIVO (PRESIONADO) */
+.del-all-button:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* TARJETAS DE AVISO (NOTIF CARDS)
+/* ========================================================================== */
+.card-notif {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--secondary-bg);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* DETALLES DE LA NOTIFICACIÓN */
+.notif-detail {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Icono de campana a la izquierda */
+.notif-detail svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* BLOQUE DE CONTENIDO DE LA NOTIFICACIÓN */
+.notif-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.notif-content p {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+/* ÁREA DE ACCIONES SECUNDARIAS (METADATOS Y LIMPIEZA)
+/* ========================================================================== */
+
+.notif-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+/*Tiempo de la notificación */
+.notif-actions small {
+  color: gray;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/* Separador: - */
+.notif-actions p {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/* Botón para limpiar cada notificación */
+.notif-actions button {
+  border: none;
+  background: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: transform var(--transition-fast);
+}
+
+/* Hover */
+.notif-actions button.delete-one:hover {
+  transform: scale(var(--hover-scale-soft));
+}
+
+/* Botón presionado */
+.notif-actions button.delete-one:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* MENSAJE QUE INCIDA QUE YA NO HAY MÁS NOTIFICACIONES
+/* ========================================================================== */
+
+.notif-empty {
+  padding: 10px;
+  text-align: center;
+  color: gray;
+  font-size: 18px;
+  font-weight: normal;
+  border-bottom: none;
+  opacity: 0.8;
+}
