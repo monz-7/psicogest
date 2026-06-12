@@ -1,0 +1,23 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA LA TABLA DE GESTIÓN DE PACIENTES (VISTA ADMIN)
+/* ==========================================================================
+
+/* ==========================================================================
+/* CONTENEDORES Y ESTRUCTURA DE LA TABLA
+/* ========================================================================== */
+
+.table-patients-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1600px;
+  padding: 20px;
+  background-color: var(--secondary-bg);
+  border-radius: 16px;
+  overflow: visible !important;
+}
+
+/* Nota: los estilos específicos de la tabla se encuentran en tables.css */
