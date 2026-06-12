@@ -1,0 +1,388 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS GLOBALES, VARIABLES DEL SISTEMA Y TEMAS CLARO  / OSCURO
+/* ==========================================================================
+*/
+
+/* ==========================================================================
+/* IMPORTACIÓN DE MÓDULOS DE ESTILO
+/* ========================================================================== 
+*/
+
+@import url("admin_patients.css");
+@import url("admin_psychologists.css");
+@import url("agenda.css");
+@import url("appointments.css");
+@import url("directory.css");
+@import url("dropdowns.css");
+@import url("forms.css");
+@import url("header_login.css");
+@import url("header_registration.css");
+@import url("header.css");
+@import url("home.css");
+@import url("intl_phone_custom.css");
+@import url("login.css");
+@import url("modal.css");
+@import url("notifications.css");
+@import url("patients.css");
+@import url("profile.css");
+@import url("registration.css");
+@import url("scheduling.css");
+@import url("tables.css");
+@import url("toggle_password.css");
+
+/* ==========================================================================
+/* VARIABLES GLOBALES (MODO CLARO POR DEFECTO)
+/* ========================================================================== */
+
+:root {
+  /* =====================================
+  /* Factores de escala y dimensiones 
+  /* ===================================== */
+
+  --scale-factor: 1.2;
+  /* Altura del header */
+  --header-height: 120px;
+
+  /* =====================================
+  /* Colores 
+  /* ===================================== */
+
+  /* Color primario */
+  --primary-color: #085394;
+  /* Fondo general de la página */
+  --primary-bg: #eeeeee;
+  /* Fondo del header y elementos como tarjetas, etc. */
+  --secondary-bg: #ffffff;
+  /* Bordes y líneas de separación grises */
+  --gray-border: #ddd;
+  /* Texto normal */
+  --text-color: black;
+  /* Texto en los botones */
+  --text-button: white;
+  /* Texto de hints y placeholders */
+  --input-hint: #b1b1b1;
+  /* Fondo de los dropdowns */
+  --dropdown-bg: #ffffff;
+  /* Botones rojos: cancelar, eliminar, etc. */
+  --red-bg-btn: rgb(100, 12, 12);
+  /* Botones verdes */
+  --green-bg-btn: #04561e;
+  /* Modal: fondo del contenido del copy text */
+  --copy-text-bg: #f4f4f4;
+  /* Badges de estado: activo */
+  /* texto */
+  --active-text-badge: #155724;
+  /* fondo */
+  --active-bg-badge: #d4edda;
+  /* Badges de estado: inactivo */
+  /* texto */
+  --inactive-text-badge: #721c24;
+  /* fondo */
+  --inactive-bg-badge: #f8d7da;
+
+  /* =====================================
+  /* Estados interactivos y hovers 
+  /* ===================================== */
+
+  /* Hover en el fondo de los botones de modo */
+  --bg-color-hover: rgba(0, 0, 0, 0.1);
+  /* Hover en el fondo del dropdown de notificaciones */
+  --bg-hover-dropdown: rgba(0, 0, 0, 0.03);
+  /* Hover de los inputs / selects */
+  --hover-shadow-input: 0 0 0 2px rgba(8, 83, 148, 0.2);
+  /* Hover en las filas de las tablas (admin) */
+  --hover-bg-table: #f3f3f3b8;
+
+  /* =====================================
+  /* Alertas y control de errores
+  /* ===================================== */
+
+  /* Fondo del mensaje de error */
+  --error-bg: #ffebee;
+  /* Borde del mensaje de error */
+  --error-border: #e53935;
+  /* Texto en el mensaje de error */
+  --error-text: #b71c1c;
+
+  /* =====================================
+  /* Pestañas
+  /* ===================================== */
+
+  /* Pestaña inactiva */
+  --tab-color: lightgray;
+  /* Texto de la pestaña inactiva */
+  --tab-text: rgba(0, 0, 0, 0.4);
+  /* Sombra del botón de la pestaña */
+  --tab-shadow:
+    /* izquierda */
+    -2px -2px 6px rgba(0, 0, 0, 0.2),
+    /* derecha */ 2px -2px 6px rgba(0, 0, 0, 0.2),
+    /* arriba */ 0px -4px 6px rgba(0, 0, 0, 0.2);
+
+  /* =====================================
+  /* Sombras
+  /* ===================================== */
+
+  --box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.12),
+    0 16px 24px rgba(0, 0, 0, 0.1);
+  --tab-shadow:
+    -2px -2px 6px rgba(0, 0, 0, 0.2),
+    /* izquierda */ 2px -2px 6px rgba(0, 0, 0, 0.2),
+    /* derecha */ 0px -4px 6px rgba(0, 0, 0, 0.2); /* arriba */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  /* =====================================
+  /* Scrollbar
+  /* ===================================== */
+
+  /* Parte que arrastra del scrollbar */
+  --scroll-thumb: rgba(0, 0, 0, 0.2);
+  /* Track (canal de fondo) */
+  --scroll-track: #f0f0f0;
+
+  /* =====================================
+  /* Animaciones, 
+  /* transformaciones, 
+  /* transiciones
+  /* ===================================== */
+
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s var(--ease-out);
+  --transition-fast: 0.15s var(--ease-out);
+
+  --hover-scale-soft: 1.08;
+  --hover-scale-strong: 1.1;
+  --hover-scale-extra: 1.15;
+
+  --press-scale: 0.96;
+  --press-duration: 0.2s;
+  --press-transition: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --slide-duration: 0.3s;
+  --slide-transition: ease;
+
+  --transform-duration: 0.2s;
+  --transform-easing: ease;
+  --translate-y: -10px;
+}
+
+/* GENERAL */
+* {
+  box-sizing: border-box;
+}
+
+/* ESTILOS GLOBALES DEL BODY */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+
+/* CONTENEDOR PARA OCULTAR ELEMENTOS (SPRITE SVG) */
+.hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* CONTENIDO PRINCIPAL POR PÁGINA */
+.main-content {
+  padding: 30px;
+  padding-top: calc(var(--header-height) + 10px);
+}
+
+/* ESTRUCTURA COMPARTIDA: TOP-BAR (BARRA DE NAVEGACIÓN SUPERIOR INTERNA EN CADA PÁGINA) */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Título de la página */
+.top-bar h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Icono del título de la página */
+.icon-title {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: var(--primary-color);
+}
+
+/* Retorno en top-bar */
+.top-bar a {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Icono en el retorno en top-bar */
+.return-button svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: var(--primary-color);
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Estados dinámicos del top-bar */
+.top-bar a:hover {
+  transform: scale(var(--hover-scale-soft));
+}
+
+.top-bar a:hover svg {
+  transform: scale(var(--hover-scale-strong));
+}
+
+/* Botón en estado activo (presionado) */
+.top-bar a:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ERRORES */
+.error-box {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background-color: var(--error-bg);
+  border-left: 4px solid var(--error-border);
+  border-radius: 8px;
+  color: var(--error-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Input nativo en estado fallido */
+.field-input.input-error input {
+  border: 2px solid var(--error-border);
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.15);
+}
+
+/* Dropdown personalizado en estado fallido */
+.dropdown.input-error .dropdown-selected {
+  border: 2px solid var(--error-border);
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.15);
+}
+
+/* SCROLLBARS */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Parte que arrastra */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 20px;
+}
+
+/* Track (canal de fondo) */
+::-webkit-scrollbar-track {
+  background-color: var(--scroll-track);
+}
+
+/* ==========================================================================
+/* CAMBIO EN LAS VARIABLES GLOBALES (MODO OSCURO ACTIVO)
+/* ========================================================================== */
+
+body.dark-mode {
+  /* =====================================
+  /* Colores 
+  /* ===================================== */
+
+  /* Color primario */
+  --primary-color: #597eaa;
+  /* Fondo general de la página */
+  --primary-bg: #121212;
+  /* Fondo del header y elementos como tarjetas, etc. */
+  --secondary-bg: #1e1e1e;
+  /* Bordes y líneas de separación grises */
+  --gray-border: #333;
+  /* Texto normal */
+  --text-color: white;
+  /* Texto de hints y placeholders */
+  --input-hint: rgba(255, 255, 255, 0.5);
+  /* Fondo de los dropdowns */
+  --dropdown-bg: #181818;
+  /* Modal: fondo del contenido del copy text */
+  --copy-text-bg: #454545;
+
+  /* =====================================
+  /* Estados interactivos y hovers
+  /* ===================================== */
+
+  /* Hover en el fondo de los botones de modo */
+  --bg-color-hover: rgba(255, 255, 255, 0.1);
+  /* Hover en el fondo del dropdown de notificaciones */
+  --bg-hover-dropdown: rgba(255, 255, 255, 0.08);
+  /* Hover de los inputs / selects */
+  --hover-shadow-input: 0 0 0 2px rgba(89, 126, 170, 0.35);
+  /* Hover en las filas de la tabla de pacientes (admin) */
+  --hover-bg-table: #252525;
+
+  /* =====================================
+  /* Alertas y control de errores
+  /* ===================================== */
+
+  /* Fondo del mensaje de error */
+  --error-bg: rgba(229, 57, 53, 0.15);
+  /* Borde del mensaje de error */
+  --error-border: #ef5350;
+  /* Texto en el mensaje de error */
+  --error-text: #ff8a80;
+
+  /* =====================================
+  /* Pestañas
+  /* ===================================== */
+
+  /* Pestaña inactiva */
+  --tab-color: #383838;
+  /* Texto de la pestaña inactiva */
+  --tab-text: #656565;
+  /* Sombra del botón de la pestaña */
+  --tab-shadow:
+    /* izquierda */
+    -4px -4px 8px rgba(0, 0, 0, 0.6),
+    /* derecha */ 4px -4px 8px rgba(0, 0, 0, 0.6),
+    /* arriba */ 0px -4px 8px rgba(0, 0, 0, 0.6);
+
+  /* =====================================
+  /* Sombras
+  /* ===================================== */
+
+  --box-shadow:
+    0 2px 4px rgba(255, 255, 255, 0.05), 0 6px 12px rgba(0, 0, 0, 0.6);
+
+  /* =====================================
+  /* Scrollbar
+  /* ===================================== */
+
+  /* Parte que arrastra del scrollbar */
+  --scroll-thumb: rgba(255, 255, 255, 0.2);
+  /* Track (canal de fondo) */
+  --scroll-track: #252525;
+}
