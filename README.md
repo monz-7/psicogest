@@ -45,7 +45,7 @@ Herramienta de versionamiento: Git y GitHub
 
 # EVIDENCIAS DESARROLLADAS
 
-## Semana de entrega: 02 de mayo al 09 de mayo.
+## Semana de entrega: 02 de junio al 09 de junio.
 
 | Evidencia                                                            | Código                 |
 | -------------------------------------------------------------------- | ---------------------- |
