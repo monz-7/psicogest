@@ -1,0 +1,84 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL DIRECTORIO
+/* ========================================================================== */
+
+/* ==========================================================================
+/* CONTENEDORES PRINCIPALES Y ESTRUCTURA
+/* ========================================================================== */
+
+.card-directory {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: var(--secondary-bg);
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.psycho-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* ==========================================================================
+/* ELEMENTOS GRÁFICOS E ICONOS
+/* ========================================================================== */
+
+.psycho-detail svg {
+  width: 40px;
+  height: 40px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.divider-v {
+  width: 2px;
+  height: 190px;
+  margin: 0 10px;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+/* BLOQUE DE INFORMACIÓN
+/* ========================================================================== */
+
+.info-ps-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-ps-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.info-ps-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4; /* Aumenta la separación entre líneas */
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+/* SECCIÓN DE ACCIONES E INTERACCIÓN (BOTONES Y ENLACES)
+/* ========================================================================== */
+
+/* Botones con comportamiento de enlace */
+.scheduling-with {
+  padding: 2;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--primary-color);
+  margin-top: 40px;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
