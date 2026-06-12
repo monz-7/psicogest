@@ -1,0 +1,249 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA LA GESTIÓN DE PSICÓLOGOS (VISTA ADMIN)
+/* PESTAÑAS Y FORMULARIOS
+/* ==========================================================================
+
+/* ==========================================================================
+/* CONTENEDORES PRINCIPALES Y ESTRUCTURA DE DISEÑO (LAYOUT)
+/* ========================================================================== */
+
+.card-ps-management {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Unión perfecta la barra de pestañas y el contenedor */
+  width: 100%;
+  margin-bottom: 0;
+  padding: 30px;
+  background: var(--secondary-bg);
+  border-radius: 16px;
+}
+
+.table-psychologists-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1600px;
+  padding: 0;
+  background-color: var(--secondary-bg);
+  border-radius: 16px;
+  overflow: visible !important;
+}
+
+/* ==========================================================================
+/* SISTEMA DE INTERFAZ POR PESTAÑAS (TABS CONTROLS)
+/* ========================================================================== */
+
+.tabs-ps-management {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.tabs-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--tab-text);
+  background: var(--tab-color);
+  border: 1px solid var(--tab-color);
+  border-bottom: none; /* Permite unión visual sobre el contenedor principal */
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.tab-btn.active {
+  font-weight: bold;
+  color: white;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--tab-shadow);
+}
+
+/* ==========================================================================
+/* CONTENEDORES DE BLOQUES DE CONTENIDO (TAB VIEWPORTS)
+/* ========================================================================== */
+
+.tab-container-ps {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  /* Manejo de desbordamientos y zonas de scroll interno */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Controladores de visibilidad de estados alternados mediante JS */
+.tab-content {
+  display: none;
+  flex-direction: column;
+  margin: 0;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ==========================================================================
+/* ESTRUCTURA INTERNA DE FORMULARIOS Y CASILLAS (FORM LAYOUT)
+/* ========================================================================== */
+
+.psychologist-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.psychologist-form {
+  width: 100%;
+}
+
+#psychologist-form .field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.title-form {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: var(--primary-color);
+  text-align: left;
+}
+
+.divider-line {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid var(--gray-border);
+}
+
+/* ==========================================================================
+/* FILAS DINÁMICAS Y COMPONENTES DE SELECCIÓN (SPECIALTIES FLOW)
+/* ========================================================================== */
+
+.specialty-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.specialty-row .dropdown {
+  flex: 1; /* Se estira y ocupa todo el espacio que queda en el eje horizontal */
+}
+
+#selected-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+/* Etiquetas dinámicas de especialidades (Chips) */
+.specialty-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: var(--primary-color);
+  border-radius: 20px;
+}
+
+.specialty-chip button {
+  padding: 0;
+  font-size: 16px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+/* BOTONES DE ACCIÓN E INTERACCIONES
+/* ========================================================================== */
+
+/* Botón: agregar especialidad */
+.btn-add-specialty {
+  box-sizing: border-box;
+  width: 120px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-button);
+  white-space: nowrap;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-add-specialty:hover {
+  background: var(--green-bg-btn);
+  border: 1px solid var(--green-bg-btn);
+  box-shadow: var(--hover-shadow-input);
+}
+
+.btn-add-specialty:focus {
+  outline: none; /* Quita el borde/halo que pone el navegador por defecto */
+}
+
+.btn-add-specialty:active {
+  transform: scale(var(--press-scale));
+}
+
+/* Botón principal: Registrar cambios / Crear cuenta del nuevo psicólogo */
+.btn-register {
+  box-sizing: border-box;
+  display: block;
+  margin: 40px 0 0 auto; /* Empuja el botón al extremo inferior derecho */
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-button);
+  text-align: center;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.btn-register:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--hover-shadow);
+}
+
+.btn-register:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--soft-shadow);
+}
