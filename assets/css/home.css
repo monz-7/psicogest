@@ -1,0 +1,132 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL INICIO (HOME)
+/* ========================================================================== */
+
+/* ==========================================================================
+/* ENCABEZADO Y BIENVENIDA
+/* ========================================================================== */
+
+/* Mensaje de bienvenida */
+.main-content h2 {
+  font-size: 18px;
+  margin: 40px 0 20px 0;
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+/* CONTENEDOR PRINCIPAL (GRID / FLEX DE ACCESOS)
+/* ========================================================================== */
+
+/* Tarjeta contenedora */
+.card-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  background: var(--secondary-bg);
+  padding: 60px;
+  margin: 40px 0;
+  border-radius: 16px;
+}
+
+/* Línea vertical divisora */
+.divider {
+  width: 2px;
+  height: 220px;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+/* BOTONES DE ACCIÓN (CARD BUTTONS)
+/* ========================================================================== */
+
+/* Botones de funciones grandes */
+.card-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  padding: 10px;
+  background: var(--primary-color);
+  color: var(--text-button);
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none; /* quita el subrayado típico de los enlaces */
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Icono dentro de los botones */
+.card-button svg {
+  width: 80px;
+  height: 80px;
+  fill: white;
+  flex-shrink: 0;
+  transition: transform var(--transition-normal);
+}
+
+/* Hover de los botones grandes */
+.card-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--shadow-hover);
+}
+
+/* Botón en estado activo (presionado) */
+.card-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--shadow-soft);
+}
+
+/* ==========================================================================
+/* PIE DE PÁGINA Y ENLACE AL DIRECTORIO
+/* ========================================================================== */
+
+/* Pie de página: enlace al directorio */
+.directory-link {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.directory-link a {
+  color: var(--primary-color);
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition:
+    color var(--transition-fast),
+    transform var(--press-duration) var(--press-transition);
+}
+
+/* Enlace cuando se interactúa */
+/* Pseudo-elemento para el subrayado expansivo animado en el hover */
+.directory-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width var(--transition-normal);
+}
+
+/* Expande la linea de izquierda a derecha hasta cubrir todo el ancho del enlace */
+.directory-link a:hover::after {
+  width: 100%;
+}
+
+/* Estado activo del enlace (Feedback de presión) */
+.directory-link a:active {
+  transform: scale(var(--press-scale));
+}
