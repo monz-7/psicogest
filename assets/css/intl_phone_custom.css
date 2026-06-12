@@ -1,0 +1,167 @@
+/* ===================================================================================
+/* ARCHIVO: PERSONALIZACIÓN DE LA LIBRERÍA DE TELÉFONO INTERNACIONAL (INTL-TEL-INPUT)
+/* =================================================================================== */
+
+/* ===================================================================================
+/* CONTENEDOR PRINCIPAl (LIBRERÍA WRAPPER)
+/* =================================================================================== */
+
+.iti {
+  width: 100%;
+}
+
+/* ===================================================================================
+/* INPUT DE TEXTO / TELÉFONO
+/* =================================================================================== */
+
+.iti input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  padding-right: 12px;
+  font-size: 14px;
+  color: var(--text-color);
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.iti input:hover {
+  box-shadow: var(--hover-shadow-input);
+}
+
+.iti input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: var(--hover-shadow-input);
+}
+
+/* Formateo de marcadores de posición (Placeholders) */
+.iti input::placeholder {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--input-hint);
+}
+
+/* Comportamiento del texto digitado por el usuario */
+.iti input:not(:placeholder-shown) {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* ===================================================================================
+/* BOTÓN DE SELECCIÓN DE BANDERA Y CÓDIGO (PICKER TRIGGER)
+/* =================================================================================== */
+
+.iti__selected-country {
+  margin-right: 14px;
+  border-radius: 8px 0 0 8px;
+  transition: background-color 0.2s ease;
+}
+
+.iti__selected-country-primary {
+  border-right: 1px solid var(--primary-color);
+}
+
+/* Efectos interactivos en el disparador de banderas */
+.iti__selected-country:hover {
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.iti__flag {
+  margin-left: 6px;
+  margin-right: 6px;
+  transform: scale(1.4);
+  transform-origin: center;
+}
+
+.iti__selected-dial-code {
+  padding-left: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Flecha */
+.iti__arrow {
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-top: 8px solid var(--primary-color);
+}
+
+.iti__arrow.iti__arrow--up {
+  border-top: none;
+  border-bottom: 8px solid var(--primary-color);
+}
+
+/* ==========================================================================
+/* MENÚ FLOTANTE DESPLEGABLE (DROPDOWN LIST)
+/* ========================================================================== */
+
+.iti__country-list {
+  color: var(--text-color);
+  background: var(--dropdown-bg);
+  box-shadow: var(--box-shadow);
+}
+
+.iti__dropdown-content {
+  background-color: var(--secondary-bg);
+}
+
+.iti__country {
+  padding: 10px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Estados de selección y Hover en la lista de países */
+.iti__country:hover {
+  font-weight: bold;
+  color: white;
+  background: var(--primary-color);
+}
+
+.iti__country.iti__highlight {
+  color: white;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+/* CAPAS DE SOBREESCRITURA (!IMPORTANT CORRECTIONS)
+/* ========================================================================== */
+
+/* Forzado de padding izquierdo para que el texto no se solape con la bandera */
+.iti input.iti__tel-input,
+.iti input.iti__tel-input[type="text"],
+.iti input.iti__tel-input[type="tel"] {
+  position: relative;
+  z-index: 0;
+  margin: 0 !important;
+  padding-left: 110px !important;
+}
+
+.iti input {
+  padding-left: 110px !important;
+}
+
+.iti__selected-country {
+  padding-right: 14px !important;
+  background: transparent !important;
+}
+
+.iti--inline-dropdown .iti__dropdown-content {
+  border: none !important;
+  border-radius: 0 !important; /* Mantiene la consistencia cuadrada */
+}
+
+/* Input interno del buscador nativo de la librería */
+.iti input.iti__search-input {
+  width: 100% !important;
+  padding-left: 8px !important;
+}

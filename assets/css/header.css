@@ -1,0 +1,511 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA EL HEADER GENERAL Y COMPONENTES DE NAVEGACIÓN
+/* ========================================================================== */
+
+/* ==========================================================================
+/* CONTENEDOR (HEADER GENERAL)
+/* ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Asegura que quede sobre el contenido al hacer scroll */
+  display: flex;
+  flex-direction: column;
+  height: var(--header-height);
+  padding: 10px 30px;
+  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--gray-border);
+  box-sizing: border-box;
+}
+
+/* Reseteos globales dentro del contexto del header */
+.header-l-top a,
+.header-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-l-top h1,
+.header-container h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+/* FILA SUPERIOR (HEADER-TOP): LOGO, MODOS Y LOGOUT
+/* ========================================================================== */
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+/* --- Lado Izquierdo: Logo y selector de temas --- */
+.header-l-top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.mode-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mode-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.mode-button svg {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  fill: #888;
+  vertical-align: middle; /* Alineación central con el texto */
+  transition:
+    transform var(--transition-fast),
+    fill var(--transition-fast);
+}
+
+/* Estados e interacciones del selector de temas */
+.mode-button.active {
+  background: rgba(30, 91, 140, 0.1);
+  border: 2px solid var(--primary-color);
+}
+
+.mode-button.active svg {
+  fill: var(--primary-color);
+}
+
+.mode-button:hover {
+  background-color: var(--bg-color-hover);
+  transform: scale(var(--hover-scale-soft));
+}
+
+.mode-button:hover svg {
+  fill: var(--primary-color);
+  transform: scale(var(--hover-scale-strong));
+}
+
+.mode-button:active {
+  transform: scale(var(--press-scale));
+}
+
+/* --- Lado Derecho: Rol de usuario y cierre de sesión --- */
+.header-r-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-role {
+  height: 36px;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+}
+
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+.logout-button svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-color);
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Estados e interacciones de cierre de sesión */
+.logout-button:hover {
+  color: var(--primary-color);
+  transform: scale(var(--hover-scale-soft));
+}
+
+.logout-button:hover svg {
+  fill: var(--primary-color);
+  transform: scale(var(--hover-scale-strong));
+}
+
+.logout-button:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* FILA INFERIOR (HEADER-BOTTOM): ACCESO AL MENÚ Y ACCIONES
+/* ========================================================================== */
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40%;
+  padding-top: 10px;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+.menu-button svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-color);
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Estados e interacciones del botón de menú */
+.menu-button:hover {
+  color: var(--primary-color);
+  transform: scale(var(--hover-scale-soft));
+}
+
+.menu-button:hover svg {
+  fill: var(--primary-color);
+  transform: scale(var(--hover-scale-strong));
+}
+
+.menu-button:active {
+  transform: scale(var(--press-scale));
+}
+
+/* --- Lado Derecho: Contenedor de acciones (Notificaciones / Perfil) --- */
+.header-r-bottom {
+  display: flex;
+  align-items: center;
+}
+
+.actions-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.action-button svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--text-color);
+  transition:
+    transform var(--transition-fast),
+    fill var(--transition-fast);
+}
+
+/* Estados de botones de acción */
+.action-button:hover {
+  background-color: var(--bg-color-hover);
+  transform: scale(var(--hover-scale-soft));
+}
+
+.action-button:hover svg {
+  fill: var(--primary-color);
+  transform: scale(var(--hover-scale-strong));
+}
+
+.action-button.active svg {
+  fill: var(--primary-color);
+}
+
+.action-button:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* BARRA LATERAL DE NAVEGACIÓN (MENU SIDEBAR)
+/* ========================================================================== */
+
+.menu-sidebar {
+  position: fixed;
+  top: 0;
+  left: -360px; /* Oculto por defecto a la izquierda */
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 20px;
+  color: white;
+  background: var(--primary-color);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25);
+  transition: left var(--slide-duration) var(--slide-transition);
+}
+
+.menu-sidebar.active {
+  left: 0; /* Despliegue en pantalla */
+}
+
+/* --- Cabecera del sidebar (Logo y Cierre) --- */
+.logo-close-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.logo-close-menu h2 {
+  margin: 10px 10px 30px 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close-menu {
+  font-size: 46px;
+  line-height: 1;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transform: translateY(-10px);
+  transition: transform var(--transform-duration) var(--transform-easing);
+}
+
+.close-menu:hover {
+  transform: translateY(var(--translate-y)) scale(var(--scale-factor));
+}
+
+.close-menu:active {
+  transform: translateY(var(--translate-y)) scale(var(--press-scale));
+}
+
+/* --- Enlaces de navegación del sidebar --- */
+.menu-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: all 0.2s var(--ease-out);
+}
+
+.menu-sidebar svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+}
+
+.menu-sidebar a:hover {
+  color: var(--primary-color);
+  background-color: white;
+}
+
+.menu-sidebar a:hover svg {
+  fill: var(--primary-color);
+}
+
+.menu-sidebar a:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* DROPDOWN DE NOTIFICACIONES
+/* ========================================================================== */
+
+.notif-container {
+  position: relative;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  z-index: 1000;
+  display: none; /* Controlado por JS con la clase .show */
+  flex-direction: column;
+  width: 260px;
+  background: var(--dropdown-bg);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.notif-dropdown.show {
+  display: flex;
+}
+
+/* --- Encabezado del dropdown --- */
+.notif-header {
+  margin: 0;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.notif-header span {
+  display: block;
+  margin: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* --- Lista e items del listado --- */
+.notif-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.notif-item svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.notif-item:hover {
+  background: var(--bg-hover-dropdown);
+}
+
+/* --- Bloques de contenido de notificación --- */
+.notif-content-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.notif-content-dropdown p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+.notif-content-dropdown small {
+  font-size: 12px;
+  font-weight: normal;
+  color: gray;
+}
+
+.notif-empty-dropdown {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: normal;
+  color: gray;
+  text-align: center;
+  border-bottom: none;
+  opacity: 0.8;
+}
+
+/* Enlaces y botones de acciones internas */
+.notif-actions-dropdown {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.notif-actions-dropdown a {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--primary-color);
+}
+
+.notif-actions-dropdown p {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--primary-color);
+}
+
+.notif-actions-dropdown button {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--primary-color);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* --- Pie de página del dropdown (Footer) --- */
+.notif-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--gray-border);
+}
+
+.notif-footer a {
+  margin: 10px 20px;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--primary-color);
+}
+
+.notif-footer button {
+  margin: 10px 20px;
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--primary-color);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,133 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS BASE PARA TODOS LOS DROPDOWN PERSONALIZADOS
+/* ========================================================================== */
+
+/* Dropdown personalizado */
+.dropdown {
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+  min-width: 0;
+}
+
+/* Elemento que se ve seleccionado: dropdown cerrado */
+.dropdown-selected {
+  display: flex;
+  border: 1px solid var(--primary-color);
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border-radius: 8px;
+  padding: 0px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--input-hint);
+  font-weight: normal;
+  font-style: italic; /* estilo del hint */
+  line-height: 40px;
+  height: 36px;
+  width: 100%;
+}
+
+.dropdown-selected.bold .dropdown-text {
+  color: var(--text-color);
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Fuerza el placeholder/hint inicial a una sola línea y se corta con ... si es muy largo */
+.dropdown-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis; /* agrega "…" si se corta */
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+/* Icono de flecha */
+.dropdown .arrow-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+/* Animación de la flecha al abrir el dropdown */
+.dropdown.open .arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* Dropdown cerrado: interacción */
+.dropdown-selected:hover {
+  box-shadow: var(--hover-shadow-input);
+}
+
+/* Dropdown abierto: interacción */
+.dropdown.open .dropdown-selected {
+  border: 2px solid var(--primary-color);
+  box-shadow: var(--hover-shadow-input);
+}
+
+/* Opciones: dropdown abierto */
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--dropdown-bg);
+  list-style: none;
+  display: none; /* oculto por defecto */
+  box-shadow: var(--box-shadow);
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 184px; /* limita el número de opciones que se ven */
+  overflow-y: auto;
+}
+
+.dropdown-options.show {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Texto de las opciones */
+.dropdown-options li {
+  padding: 10px;
+  font-size: 14px;
+  font-style: normal;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: background var(--transition-fast);
+  white-space: normal; /* permite saltos de línea */
+  word-wrap: break-word; /* corta palabras largas */
+}
+
+/* Opciones cuando se interactúa */
+.dropdown-options li:hover {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Opción seleccionada cuando se cierra el dropdown */
+.dropdown-selected.bold .dropdown-text {
+  font-weight: bold; /* aplica negrita al texto */
+  font-style: normal; /* quita cursiva */
+  color: var(--text-color);
+}
+
+/* Dropdown ocupa todo el ancho del contenedor */
+.dropdown-selected,
+.dropdown-options {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Dropdown deshabilitado */
+.dropdown.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

@@ -1,0 +1,20 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL HEADER DEL REGISTRO (REUTILIZA HEADER_LOGIN)
+/* ========================================================================== */
+
+/* Header del login reutilizable en la página de registro */
+.page-registration .header-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Contenedor del header del login reutilizable en la página de registro */
+.page-registration .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  gap: 100px;
+}
