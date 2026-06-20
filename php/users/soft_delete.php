@@ -3,9 +3,14 @@
 // ARCHIVO: INACTIVACIÓN / ACTIVACIÓN LÓGICA DE USUARIOS (SOFT DELETE)
 // ==========================================================================
 
-// Incluye la seguridad y la conexión a la db
-require_once("auth.php");
-require_once("db.php");
+// Middlewares de autorización y permisos
+require_once("../auth/auth.php");
+require_once("../auth/permissions.php");
+// Middleware de la conexión a la db
+require_once("../config/db.php");
+
+// Roles requeridos
+requireRoles(["admin", "psicologo"]);
 
 // CAPTURA DE DATOS DESDE LA URL (MÉTODO GET)
 $uuid = $_GET['uuid'] ?? '';
@@ -23,7 +28,7 @@ if (!in_array($redirect, $allowedRedirects)) {
     $redirect = "admin_patients.php";
 }
 
-$fallbackUrl = "../pages/" . $redirect;
+$fallbackUrl = "../../pages/" . $redirect;
 
 // Si los parámetros no son válidos, regresa a la página sin romper el flujo con un die()
 if (empty($uuid) || !in_array($status, ['activo', 'inactivo'])) {

@@ -3,8 +3,14 @@
 //  ARCHIVO: PROCESAMIENTO CRUD DE ACTUALIZACIÓN DE USUARIOS
 // ==========================================================================
 
-// Incluye el archivo de conexión a la base de datos
-require_once("db.php");
+// Middleware de autorización y permisos
+require_once("../auth/auth.php");
+require_once("../auth/permissions.php");
+// Middleware de conexión a la base de datos
+require_once("../config/db.php");
+
+// Rol requerido para este endpoint
+requireRole("admin");
 
 header("Content-Type: application/json");
 error_reporting(E_ALL);

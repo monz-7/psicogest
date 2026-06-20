@@ -10,7 +10,7 @@
 function requireRole($role)
 {
     if ($_SESSION["role"] !== $role) {
-        header("Location: ../pages/home.php");
+        header("Location: ../../pages/home.php");
         exit();
     }
 }
@@ -19,7 +19,7 @@ function requireRole($role)
 function requireRoles(array $roles)
 {
     if (!in_array($_SESSION["role"], $roles)) {
-        header("Location: ../pages/home.php");
+        header("Location: ../../pages/home.php");
         exit();
     }
 }

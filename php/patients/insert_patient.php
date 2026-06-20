@@ -7,7 +7,7 @@
 header('Content-Type: application/json');
 
 // Middleware de conexión con la base de datos
-require_once 'db.php'; 
+require_once '../config/db.php'; 
 
 // Valida el método
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -166,23 +166,21 @@ try {
             doc_number, 
             names, 
             surnames, 
-            phone_number, 
-            country
+            phone_number
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
 
     // Parámetros
     $stmt->bind_param(
-        "ssssssss", 
+        "sssssss", 
         $uuidUserProfile, 
         $uuidCredential, 
         $docType, 
         $docNumber, 
         $names, 
         $surnames, 
-        $phoneNumber, 
-        $country
+        $phoneNumber
     );
 
     // Ejecuta
@@ -193,17 +191,19 @@ try {
         INSERT INTO patient (
             uuid_patient, 
             uuid_user_profile, 
-            birth_date
+            birth_date,
+            country
         ) 
-        VALUES (?, ?, ?)"
+        VALUES (?, ?, ?, ?)"
     );
 
     // Parámetros
     $stmt->bind_param(
-        "sss", 
+        "ssss", 
         $uuidPatient,
         $uuidUserProfile,
-        $birthDate
+        $birthDate,
+        $country
     );
 
     // Ejecuta

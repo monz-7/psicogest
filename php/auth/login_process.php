@@ -10,7 +10,7 @@
 // Inicia una nueva sesión o reanuda una sesión existente
 session_start();
 // Incluye el archivo de conexión a la base de datos
-require_once("db.php");
+require_once("../config/db.php");
 
 // ==========================================================================
 // Función auxiliar para centralizar el manejo de errores de autenticación
@@ -22,14 +22,14 @@ function handleLoginError($message, $fields, $role, $login) {
     $_SESSION["old_role"] = $role;
     $_SESSION["old_login"] = $login;
     
-    header("Location: ../pages/login.php");
+    header("Location: ../../pages/login.php");
     exit();
 }
 
 // VERIFICA QUE LLEGUE POR POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     // Si alguien intenta acceder directamente al archivo, lo redirige al login
-    header("Location: ../pages/login.php");
+    header("Location: ../../pages/login.php");
     // Detiene la ejecución del script
     exit();
 }
@@ -167,5 +167,5 @@ if ($profile) {
 mysqli_stmt_close($stmtProfile);
 
 // Redirección directa al inicio
-header("Location: ../pages/home.php");
+header("Location: ../../pages/home.php");
 exit();

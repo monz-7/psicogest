@@ -7,7 +7,7 @@
 // ==========================================================================
 
 // Incorpora el archivo de configuración y conexión
-require_once "db.php";
+require_once "config/db.php";
 
 // Si el script llega a este punto sin lanzar el 'die()' de db.php, la conexión fue exitosa
 echo "Conexión exitosa con la base de datos.";

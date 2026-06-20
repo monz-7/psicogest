@@ -6,8 +6,14 @@
 
 header('Content-Type: application/json');
 
+// Middleware de autorización y permisos
+require_once("../auth/auth.php");
+require_once("../auth/permissions.php");
+
 // Middleware de conexión con la base de datos
-require_once 'db.php';
+require_once '../config/db.php';
+
+requireRole("admin");
 
 // Valida el método
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -65,8 +71,6 @@ $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
 // VALORES POR DEFECTO
 $role = "psicologo";
 $status = "activo";
-
-$country = "Colombia";
 
 $sessionDuration = 45;
 
@@ -153,23 +157,21 @@ try {
             doc_number, 
             names, 
             surnames, 
-            phone_number, 
-            country
+            phone_number
         ) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
 
     // Parámetros
     $stmt->bind_param(
-        "ssssssss", 
+        "sssssss", 
         $uuidUserProfile, 
         $uuidCredential, 
         $docType, 
         $docNumber, 
         $names, 
         $surnames, 
-        $phoneNumber, 
-        $country
+        $phoneNumber
     );
 
     // Ejecuta

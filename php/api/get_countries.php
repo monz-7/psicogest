@@ -6,10 +6,12 @@
 header('Content-Type: application/json; charset=utf-8');
 
 
-require_once 'utils.php'; 
+require_once '../helpers/utils.php'; 
 
 try {
-    $func = new ReflectionFunction('getCountryCodeByName');
+    if (!function_exists('getCountryCodeByName')) {
+        throw new Exception('Helper no disponible');
+    }
     
     // Listado para el frontend:
     $countries = [
@@ -18,6 +20,7 @@ try {
         ["name" => "Bolivia", "code" => "bo"],
         ["name" => "Brasil", "code" => "br"],
         ["name" => "Chile", "code" => "cl"],
+        ["name" => "Colombia", "code" => "co"],
         ["name" => "Ecuador", "code" => "ec"],
         ["name" => "Guayana Francesa", "code" => "gf"],
         ["name" => "Guyana", "code" => "gy"],
