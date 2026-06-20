@@ -5,11 +5,11 @@
 // ==========================================================================
 
 // Middleware de seguridad y control de accesos
-require_once("../php/auth.php");
-require_once("../php/permissions.php");
+require_once("../php/auth/auth.php");
+require_once("../php/auth/permissions.php");
 
 // Middleware de conexión con la base de datos
-require_once("../php/db.php");
+require_once("../php/config/db.php");
 
 // Restricción de acceso: solo pacientes
 requireRole("paciente");
@@ -67,9 +67,9 @@ if (!$result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PsicoGest | Directorio de psicólogos</title>
-    <link rel="icon" href="../assets/icon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon">
     
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base/main.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -78,7 +78,7 @@ if (!$result) {
     <main class="main-content">
         <!-- BARRA SUPERIOR -->
         <div class="top-bar">
-            <h2>
+            <h2 class="top-bar-title">
                 <svg class="icon-title">
                     <use href="#directory"></use>
                 </svg>
@@ -96,15 +96,15 @@ if (!$result) {
         <?php if ($result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <!-- TARJETA CONTENEDORA -->
-                <div class="card-directory">
+                <div class="directory-card">
                   <!-- DETALLES DEL PSICÓLOGO -->
-                    <div class="psycho-detail">
+                    <div class="psychologist-detail">
                         
                         <svg><use href="#human-brain"></use></svg>
                         <!-- LÍNEA DIVISORA -->
-                        <div class="divider-v"></div>
+                        <div class="line-v-directory"></div>
                         <!-- INFORMACIÓN DEL PSICÓLOGO -->
-                        <div class="info-ps-content">
+                        <div class="psychologist-info">
                             <h3><?= htmlspecialchars(mb_strtoupper($row['names'] . ' ' . $row['surnames'])) ?></h3>
                             
                             <p>
@@ -114,7 +114,7 @@ if (!$result) {
                                 <strong>Correo:</strong> <?= htmlspecialchars($row['email']) ?>.
                             </p>
                             <!-- BOTÓN DE ACCIONES -->
-                            <a class="scheduling-with" href="scheduling.php">
+                            <a class="scheduling-with-button" href="scheduling.php">
                                 Agendar una cita con este(a) psicólogo(a)
                             </a>
                             </div>
@@ -126,7 +126,7 @@ if (!$result) {
             <?php endwhile; ?>
         <?php else: ?>
             <!-- MENSAJE SI NO HYA PSICÓLOGOS REGISTRADOS -->
-            <div class="card-directory">
+            <div class="directory-card">
                 <p style="text-align: center; padding: 20px;">
                     Actualmente no hay psicólogos disponibles en el directorio.
                 </p>
@@ -140,7 +140,8 @@ if (!$result) {
         window.USER_ROLE = "<?= $_SESSION['role'] ?? 'usuario' ?>";
     </script>
 
-    <script src="../assets/js/icons.js"></script>
-    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/components/icons.js"></script>
+    <script src="../assets/js/components/menu_sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
 </body>
 </html>

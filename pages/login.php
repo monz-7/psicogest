@@ -33,10 +33,10 @@ unset($_SESSION["old_login"], $_SESSION["old_role"]);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel ="icon" href="../assets/icon.ico" type="image/x-icon">
+    <link rel ="icon" href="../assets/img/icon.ico" type="image/x-icon">
     <title>PsicoGest | Iniciar Sesión</title>
 
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base/main.css">
 </head>
 
 <body class="page-login">
@@ -47,10 +47,10 @@ unset($_SESSION["old_login"], $_SESSION["old_role"]);
     <div class="login-container"> 
 
         <!-- TARJETA CONTENEDORA -->
-        <div class="card-login"> 
+        <div class="login-card"> 
 
             <!-- Título de la página -->
-            <h2>INGRESO AL SISTEMA</h2> 
+            <h2 class="login-title">INGRESO AL SISTEMA</h2> 
 
             <!-- Contenedor para mostrar mensajes de error -->
             <!-- Verifica que la variable $error no esté vacía -->
@@ -63,7 +63,7 @@ unset($_SESSION["old_login"], $_SESSION["old_role"]);
             <?php endif; ?>
 
             <!-- FORMULARIO -->
-            <form action="../php/login_process.php" method="POST"> 
+            <form class="login-form" action="../php/auth/login_process.php" method="POST"> 
                 <!-- CONTENEDOR DEL CAMPO: rol de usuario -->
                 <div class="field-container"> 
                     <!-- Label -->
@@ -127,11 +127,11 @@ unset($_SESSION["old_login"], $_SESSION["old_role"]);
                 </div> 
 
                 <!--BOTÓN PARA INICIAR LA SESIÓN -->
-                <button type="submit" class="btn-login"> 
+                <button type="submit" class="login-button"> 
                     INGRESAR
                 </button>
                 <!-- Línea horizontal divisora -->
-                <hr class="divider-line-login">
+                <hr class="line-h-login">
 
                 <!-- CONTENEDOR DE LOS ENLACES DE RECUPERACIÓN -->
                 <div class="forgot-links"> 
@@ -152,12 +152,12 @@ unset($_SESSION["old_login"], $_SESSION["old_role"]);
         window.errorFields = <?php echo json_encode($errorFields); ?>;
     </script>
 
-    <script src="../assets/js/icons.js"></script>
-    <script src="../assets/js/header_login.js"></script>
-    <script src="../assets/js/dropdowns.js"></script>
+    <script src="../assets/js/components/icons.js"></script>
+    <script src="../assets/js/components/header_variation.js"></script>
+    <script src="../assets/js/components/dropdowns.js"></script>
     <!-- Scripts específicos para esta página -->
-    <script src="../assets/js/toggle_password.js"></script>
-    <script src="../assets/js/login.js"></script>
+    <script src="../assets/js/components/toggle_password.js"></script>
+    <script src="../assets/js/pages/login.js"></script>
 </body>
 
 </html>

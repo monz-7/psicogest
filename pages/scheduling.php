@@ -4,8 +4,8 @@
 // ==========================================================================
 
 // Middleware de seguridad y control de accesos
-require_once("../php/auth.php");
-require_once("../php/permissions.php");
+require_once("../php/auth/auth.php");
+require_once("../php/auth/permissions.php");
 
 // Módulo exclusivo para pacientes
 requireRole("paciente");
@@ -19,9 +19,9 @@ $role = $_SESSION["role"] ?? "";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PsicoGest | Agendamiento de citas</title>
-    <link rel="icon" href="../assets/icon.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base/main.css">
 </head>
 <body> 
     <!-- HEADER -->
@@ -32,7 +32,7 @@ $role = $_SESSION["role"] ?? "";
         <!-- BARRA SUPERIOR -->
         <div class="top-bar"> 
             <!-- Titulo de la página -->
-            <h2> 
+            <h2 class="top-bar-title"> 
                 <svg class="icon-title">
                     <use href="#new-appointment"></use>
                 </svg>
@@ -48,7 +48,7 @@ $role = $_SESSION["role"] ?? "";
         </div>
         
         <!-- TARJETA CONTENEDORA -->
-        <div class="card-scheduling"> 
+        <div class="scheduling-card"> 
             <!-- FORMULARIO -->
             <form class="appointment-form"> 
                 <!-- FILA: TIPO DE SESIÓN Y PSICÓLOGO -->
@@ -187,7 +187,7 @@ $role = $_SESSION["role"] ?? "";
 
                 <!-- BOTÓN DE AGENDAMIENTO (Se movió dentro del formulario para heredar el comportamiento del flujo) -->
                 <div class="form-actions">
-                    <button type="submit" class="new-appmnt-button">AGENDAR ESTA CITA</button> 
+                    <button type="submit" class="schedule-button">AGENDAR ESTA CITA</button> 
                 </div>
             </form>
         </div>
@@ -198,11 +198,12 @@ $role = $_SESSION["role"] ?? "";
         window.USER_ROLE = "<?= $_SESSION['role'] ?? 'usuario' ?>";
     </script>
 
-    <script src="../assets/js/icons.js"></script>
-    <script src="../assets/js/header.js"></script>
-    <script src="../assets/js/dropdowns.js"></script>
+    <script src="../assets/js/components/icons.js"></script>
+    <script src="../assets/js/components/menu_sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
+    <script src="../assets/js/components/dropdowns.js"></script>
     
     <!-- Script específico para esta página -->
-    <script src="../assets/js/scheduling.js"></script> 
+    <script src="../assets/js/pages/scheduling.js"></script> 
 </body>
 </html>

@@ -4,11 +4,11 @@
 // ==========================================================================
 
 // Middleware de seguridad y control de accesos
-require_once("../php/auth.php");
-require_once("../php/permissions.php");
+require_once("../php/auth/auth.php");
+require_once("../php/auth/permissions.php");
 
 // Middleware de conexión con la base de datos
-require_once("../php/db.php");
+require_once("../php/config/db.php");
 
 // Restricción de acceso: solo ADMIN
 requireRole("admin");
@@ -25,10 +25,10 @@ $sql = "
         up.names,
         up.surnames,
         p.birth_date,
+        p.country,
         up.phone_number,
         c.email,
-        c.status,
-        up.country
+        c.status
     FROM user_profile up
     INNER JOIN credential c
         ON up.uuid_credential = c.uuid_credential
@@ -53,24 +53,27 @@ $hasPatients = $result->num_rows > 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PsicoGest | Gestionar pacientes</title>
     
-    <link rel="icon" href="../assets/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/img/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/base/main.css">
 </head>
 <body>
 
+    <!-- HEADER --> 
     <div id="header-container"></div>
     
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content"> 
         
+        <!-- BARRA SUPERIOR -->
         <div class="top-bar">        
-            <h2>
+            <h2 class="top-bar-title">
                 <svg class="icon-title">
                     <use href="#patients"></use>
                 </svg>
                 GESTIÓN DE PACIENTES
             </h2>
 
-            <a href="home.php" class="return-button"> 
+            <a class="return-button" href="home.php"> 
                 <svg class="icon">
                     <use href="#home"></use>
                 </svg>
@@ -78,9 +81,29 @@ $hasPatients = $result->num_rows > 0;
             </a>
         </div>
 
-        <div class="table-patients-card">
+        <!-- TARJETA CONTENEDORA -->
+        <div class="patient-table-card">
+
+            <!-- BARRA DE BÚSQUEDA -->
+            <div class="filter-bar">
+                <svg class="filter-icon">
+                    <use href="#search"></use>
+                </svg>
+                <input
+                    type="text"
+                    class="filter-input"
+                    data-target="patients-table"
+                    data-columns="0,1"
+                    data-message="patients-message"
+                    placeholder="BUSCAR POR NOMBRE O APELLIDO"
+                    autocomplete="off"
+                >
+            </div>
+
+            <!-- CONTENEDOR DE LA TABLA -->
             <div class="table-container">
-                <table class="users-table">
+                <!-- TABLA -->
+                <table class="users-table" id="patients-table">
                     <thead>
                         <tr>
                             <th>NOMBRE(S)</th>
@@ -134,7 +157,7 @@ $hasPatients = $result->num_rows > 0;
                                     <td>
                                         <?php if ($row['status'] !== 'activo'): ?>
                                             <div class="tooltip-wrapper">
-                                                <button class="btn-edit disabled" disabled>
+                                                <button class="edit-button disabled" disabled>
                                                     ACTUALIZAR
                                                 </button>
                                                 <span class="tooltip-text">
@@ -144,7 +167,7 @@ $hasPatients = $result->num_rows > 0;
                                         <?php else: ?>
                                             <button 
                                                 type="button" 
-                                                class="btn-edit"
+                                                class="edit-button"
                                                 onclick='editUser(<?= json_encode($row); ?>, "patient")'
                                             >
                                                 ACTUALIZAR
@@ -153,16 +176,16 @@ $hasPatients = $result->num_rows > 0;
 
                                         <?php if($row['status'] === 'activo'): ?>
                                             <a
-                                                href="../php/soft_delete.php?uuid=<?= urlencode($row['uuid_user_profile']); ?>&status=inactivo&redirect=admin_patients.php"
-                                                class="btn-block"
+                                                href="../php/users/soft_delete.php?uuid=<?= urlencode($row['uuid_user_profile']); ?>&status=inactivo&redirect=admin_patients.php"
+                                                class="block-button"
                                                 onclick="return confirm('¿Seguro que quieres BLOQUEAR este paciente?');"
                                             >
                                                 BLOQUEAR
                                             </a>
                                         <?php else: ?>
                                             <a
-                                                href="../php/soft_delete.php?uuid=<?= urlencode($row['uuid_user_profile']); ?>&status=activo&redirect=admin_patients.php"
-                                                class="btn-unblock"
+                                                href="../php/users/soft_delete.php?uuid=<?= urlencode($row['uuid_user_profile']); ?>&status=activo&redirect=admin_patients.php"
+                                                class="unblock-button"
                                                 onclick="return confirm('¿Seguro que quieres DESBLOQUEAR este paciente?');"
                                             >
                                                 DESBLOQUEAR
@@ -184,7 +207,7 @@ $hasPatients = $result->num_rows > 0;
         </div>
 
         <?php if ($hasPatients): ?>
-            <span class="message">
+            <span class="table-message" id="patients-message">
                 No hay más pacientes registrados.
             </span>
         <?php endif; ?>
@@ -195,9 +218,12 @@ $hasPatients = $result->num_rows > 0;
         window.USER_ROLE = "<?= $_SESSION['role'] ?? 'usuario' ?>";
     </script>
 
-    <script src="../assets/js/icons.js"></script>
-    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/components/icons.js"></script>
+    <script src="../assets/js/components/menu_sidebar.js"></script>
+    <script src="../assets/js/components/header.js"></script>
     <!-- Script específico para esta página-->
-    <script src="../assets/js/update_user.js"></script>
+    <script src="../assets/js/users/update_user.js"></script>
+    <!-- Script para el filtrado -->
+    <script src="../assets/js/components/user_filter.js"></script>
 </body>
 </html>

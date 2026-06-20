@@ -4,7 +4,7 @@
 // ==========================================================================
 
 // Middleware de conexión con la base de datos
-require_once("../php/db.php");
+require_once("../php/config/db.php");
 
 ?>
 
@@ -15,14 +15,14 @@ require_once("../php/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel ="icon" href="../assets/icon.ico" type="image/x-icon">
+    <link rel ="icon" href="../assets/img/icon.ico" type="image/x-icon">
     <title>PsicoGest | Registrarse</title>
 
     <!-- Libreria para los números de teléfono internacionales -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"/>
     <!-- Libreria para poner iconos de banderas de países -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base/main.css">
 </head>
 
 <body class="page-registration">
@@ -33,7 +33,7 @@ require_once("../php/db.php");
     <main class="registration-container">
 
         <!-- TARJETA CONTENEDORA -->
-        <div class="card-registration">
+        <div class="registration-card">
 
             <!-- Título de la página -->
             <h2>REGISTRO EN EL SISTEMA</h2> 
@@ -245,9 +245,9 @@ require_once("../php/db.php");
                 </div>
 
                 <!-- Instrucción -->
-                <span class="subtitle">UBICACIÓN:</span> 
+                <span class="location-label">UBICACIÓN:</span> 
                     
-                <p class="instruction"><strong>¿DÓNDE TE ENCUENTRAS?</strong><br>
+                <p class="location-instruction"><strong>¿DÓNDE TE ENCUENTRAS?</strong><br>
                 <br>
                 Por favor, marca y elige <strong>solo una</strong> de las siguientes opciones según sea tu caso:</p>
 
@@ -281,17 +281,12 @@ require_once("../php/db.php");
                             <svg class="icon"><use href="#location"></use></svg>
 
                             <div class="dropdown" id="country-dropdown">
-
                                 <div class="dropdown-selected">
-
                                     <span class="dropdown-text">INDICA EL PAÍS</span>
-
                                     <svg class="arrow-icon"><use href="#down-arrow"></use></svg>
 
                                 </div>
-
                                 <ul class="dropdown-options" id="country-options"></ul>
-
                             </div>
 
                             <input type="hidden" id="country" name="country">
@@ -300,7 +295,7 @@ require_once("../php/db.php");
                 </div>
 
                 <!-- Línea horizontal divisora -->
-                <hr class="divider-line-registration">
+                <hr class="line-h-registration">
 
                 <div class="row row-checkboxes row-registration">
     
@@ -331,7 +326,7 @@ require_once("../php/db.php");
                 <!-- Boton para enviar el formulario --> 
                 <button 
                     type="submit" 
-                    class="btn-submit"
+                    class="register-button"
                 >
                     REGISTRARME
                 </button>  
@@ -350,7 +345,7 @@ require_once("../php/db.php");
 
                 <div id="modal-body"></div>
 
-                <button class="btn-ok" id="close-modal">ACEPTAR</button>
+                <button class="ok-button" id="close-modal">ACEPTAR</button>
             </div>
         </div>
 
@@ -359,16 +354,16 @@ require_once("../php/db.php");
     <!-- Libreria para los números de teléfono internacionales -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
 
-    <script src="../assets/js/intl_phone_input.js"></script>
+    <script src="../assets/js/components/intl_phone_input.js"></script>
     
-    <script src="../assets/js/icons.js"></script>
-    <script src="../assets/js/header_login.js"></script>
-    <script src="../assets/js/dropdowns.js"></script>
+    <script src="../assets/js/components/icons.js"></script>
+    <script src="../assets/js/components/header_variation.js"></script>
+    <script src="../assets/js/components/dropdowns.js"></script>
 
     <!-- Scripts específicos para esta página -->
-    <script src="../assets/js/toggle_password.js"></script>
-    <script src="../assets/js/birthdate_mask.js"></script>
-    <script src="../assets/js/countries_select.js"></script>
-    <script src="../assets/js/registration.js"></script>
+    <script src="../assets/js/components/toggle_password.js"></script>
+    <script src="../assets/js/components/birthdate_mask.js"></script>
+    <script src="../assets/js/components/countries_select.js"></script>
+    <script src="../assets/js/pages/registration.js"></script>
 </body>
 </html>
