@@ -54,9 +54,9 @@ Herramienta de versionamiento: Git y GitHub
 
 ### Actividades desarrolladas
 
-#### Componente front-end del proyecto formativo y proyectos de clase - GA7-220501096-AA4-EV03:
-
 ### 🏷️ ETIQUETA (TAG) DE COMMITS = Evidencias_GA7-220501096-AA4-EV03_y_GA7-220501096-AA5-EV01
+
+#### Componente front-end del proyecto formativo y proyectos de clase - GA7-220501096-AA4-EV03:
 
 - Reestructuración del proyecto y sus carpetas en sub-carpetas por responsabilidad para modularización.
 - Ajustes al front-end y sus estilos.
