@@ -47,14 +47,14 @@ Herramienta de versionamiento: Git y GitHub
 
 ## Semana de entrega: 16 de junio al 23 de junio.
 
+### 🏷️ ETIQUETA (TAG) DE COMMITS = Evidencias_GA7-220501096-AA4-EV03_y_GA7-220501096-AA5-EV01
+
 | Evidencia                                                         | Código                 |
 | ----------------------------------------------------------------- | ---------------------- |
 | Componente front-end del proyecto formativo y proyectos de clase. | GA7-220501096-AA4-EV03 |
 | Diseño y desarrollo de servicios web - caso.                      | GA7-220501096-AA5-EV01 |
 
 ### Actividades desarrolladas
-
-### 🏷️ ETIQUETA (TAG) DE COMMITS = Evidencias_GA7-220501096-AA4-EV03_y_GA7-220501096-AA5-EV01
 
 #### Componente front-end del proyecto formativo y proyectos de clase - GA7-220501096-AA4-EV03:
 
