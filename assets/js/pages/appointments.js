@@ -1,36 +1,15 @@
 // ==========================================================================
 // ARCHIVO: LÓGICA DE INTERFAZ PARA LA PÁGINA DE CITAS (APPOINTMENTS)
 // ==========================================================================
-
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabContents = document.querySelectorAll(".tab-content");
-const appmtsHistory = document.querySelectorAll(".appmnt-history-container");
-const noAppmtsMessage = document.getElementById("no-appmts-message");
-const noMoreMessage = document.getElementById("no-more-appmts-message");
+const appmtsHistory = document.querySelectorAll(".history-container");
+const noAppmtsMessage = document.getElementById("history-message");
+const noMoreMessage = document.getElementById("appointments-message");
 
 // ==========================================================================
-// MÓDULO: CONTROL DE PESTAÑAS (TABS)
-// ==========================================================================
-tabButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    // Limpiar estados activos previos
-    tabButtons.forEach((b) => b.classList.remove("active"));
-    tabContents.forEach((c) => c.classList.remove("active"));
-
-    // Activar pestaña y contenido correspondiente
-    btn.classList.add("active");
-    const targetContent = document.getElementById(btn.dataset.tab);
-    if (targetContent) {
-      targetContent.classList.add("active");
-    }
-  });
-});
-
-// ==========================================================================
-// MÓDULO: FILTRO DEL HISTORIAL POR MES (LÓGICA DE NEGOCIO)
+// MÓDULO: FILTRO DEL HISTORIAL POR MES
 // ==========================================================================
 
-// Este método lo ejecuta automáticamente dropdowns.js al hacer click en una opción
+// Ejecuta automáticamente dropdowns.js al hacer click en una opción
 window.onDropdownSelect = function (dropdownId, value, label) {
   // Asegura que el cambio venga del dropdown de meses (por su ID o clase)
   if (

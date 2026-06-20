@@ -1,24 +1,6 @@
 // ==========================================================================
-// ARCHIVO: REGISTRO DE PSICÓLOGOS, PESTAÑAS Y CHIPS DE ESPECIALIDADES
+// ARCHIVO: REGISTRO DE PSICÓLOGOS
 // ==========================================================================
-
-// ==========================================================================
-// CONTROL DE PESTAÑAS
-// ==========================================================================
-const buttons = document.querySelectorAll(".tab-btn");
-const contents = document.querySelectorAll(".tab-content");
-
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    contents.forEach((c) => c.classList.remove("active"));
-
-    btn.classList.add("active");
-    document.getElementById(btn.dataset.tab).classList.add("active");
-
-    localStorage.setItem("activePsychologistTab", btn.dataset.tab);
-  });
-});
 
 // ==========================================================================
 // LÓGICA DE ESPECIALIDADES (CUSTOM DROPDOWN & CHIPS)
@@ -66,7 +48,7 @@ document.getElementById("add-specialty").addEventListener("click", () => {
   dropdownText.removeAttribute("data-value");
   dropdownSelected.classList.remove("bold");
 
-  // Renderizar chips y actualizar visibilidad del dropdown
+  // Renderiza chips y actualizar visibilidad del dropdown
   renderSpecialties();
 });
 
@@ -84,14 +66,14 @@ function renderSpecialties() {
 
     chip.innerHTML = `
       <span>${specialty.name}</span>
-      <button type="button" class="btn-remove-chip" data-id="${specialty.id}">×</button>
+      <button type="button" class="remove-chip-button" data-id="${specialty.id}">×</button>
     `;
 
     container.appendChild(chip);
   });
 
   // Asigna eventos de eliminación a los botones de los chips recién creados
-  container.querySelectorAll(".btn-remove-chip").forEach((button) => {
+  container.querySelectorAll(".remove-chip-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const idToRemove = e.target.dataset.id;
       removeSpecialty(idToRemove);
@@ -137,34 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const successModal = document.getElementById("success-modal");
   const modalBody = document.getElementById("modal-body");
   const closeModalBtn = document.getElementById("close-modal");
-  const copyBtn = document.getElementById("copy-btn");
+  const copyBtn = document.getElementById("copy-button");
 
   let textToCopy = "";
-
-  // ------------------------------------------------------------------------
-  // RESTAURACIÓN DE PESTAÑA ACTIVA DESDE LOCALSTORAGE
-  // ------------------------------------------------------------------------
-  const savedTab = localStorage.getItem("activePsychologistTab");
-
-  if (savedTab) {
-    const button = document.querySelector(`[data-tab="${savedTab}"]`);
-    const content = document.getElementById(savedTab);
-
-    if (button && content) {
-      document
-        .querySelectorAll(".tab-btn")
-        .forEach((b) => b.classList.remove("active"));
-      document
-        .querySelectorAll(".tab-content")
-        .forEach((c) => c.classList.remove("active"));
-
-      button.classList.add("active");
-      content.classList.add("active");
-    }
-  }
-
-  // Interrupción segura si el formulario no pertenece a la vista cargada
-  if (!form) return;
 
   // ------------------------------------------------------------------------
   // ENVÍO ASÍNCRONO DEL FORMULARIO (AJAX / FETCH)
@@ -215,22 +172,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // === ENVÍO DE DATOS A LA API DE PHP ===
+    // === ENVÍO DE DATOS A LA API PHP ===
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("../php/insert_psychologist.php", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "../php/psychologists/insert_psychologist.php",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
 
       const data = await response.json();
 
       if (data.success) {
         const fullName = `${data.psychologist.names} ${data.psychologist.surnames}`;
 
-        // Mantiene exactamente la estructura del string que tenías
-        textToCopy = `Usuario: ${data.credentials.username}\nCorreo: ${data.credentials.email}Contraseña: ${data.credentials.password}`;
+        textToCopy = `Usuario: ${data.credentials.username}\nCorreo: ${data.credentials.email}\nContraseña: ${data.credentials.password}`;
 
         if (modalBody) {
           modalBody.innerHTML = `
@@ -247,6 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (successModal) successModal.classList.remove("hidden");
         form.reset();
+        // Oculta el modal automáticamente después de 15 segundos
+        setTimeout(() => {
+          successModal?.classList.add("hidden");
+        }, 15000);
       } else {
         alert(data.message || "Error desconocido");
       }
@@ -268,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         copyBtn.innerText = old;
-      }, 2000);
+      }, 2000); // Tiempo que tarda en cambiar el texto dentro del botón de copiado
     });
   });
 

@@ -1,6 +1,5 @@
 // ==========================================================================
-// ARCHIVO: CONTROL DE INTERACCIONES DEL LOGIN
-//
+// ARCHIVO: CONTROL DEL LOGIN
 // ==========================================================================
 
 document.addEventListener("DOMContentLoaded", () => {

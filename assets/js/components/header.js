@@ -40,7 +40,7 @@ const fullHeader = `
 
       <span class="user-role"></span>
 
-      <a href="../php/logout.php" class="logout-button">
+      <a href="../php/auth/logout.php" class="logout-button">
         <svg class="icon">
           <use href="#logout"></use>
         </svg>
@@ -63,7 +63,7 @@ const fullHeader = `
 
       <nav class="menu-sidebar" id="menu-sidebar">
 
-        <div class="logo-close-menu">
+        <div class="header-menu">
           <h2>PSIC🧠GEST</h2>
 
           <button class="close-menu" id="close-menu">
@@ -80,33 +80,33 @@ const fullHeader = `
 
     <div class="header-r-bottom"></div>
     
-      <div class="actions-buttons">
+      <div class="action-buttons">
             
-        <div class="notif-container">
+        <div class="notifications-container">
 
-          <button class="action-button" id="notif-button">
+          <button class="action-button" id="notification-button">
             <svg class="icon">
               <use href="#bell"></use>
             </svg>
           </button>
             
-          <div class="notif-dropdown" id="notif-dropdown">
+          <div class="notifications-dropdown" id="notifications-dropdown">
 
-            <div class="notif-header">
+            <div class="header-notifications">
               <span>NOTIFICACIONES</span>
             </div>
 
-            <div class="notif-list" id="notif-list">
+            <div class="notifications-list" id="notifications-list">
 
-              <div class="notif-item" data-id="1">
+              <div class="notification-item" data-id="1">
 
                 <svg><use href="#notification"></use></svg>
 
-                <div class="notif-content-dropdown">
+                <div class="notification-content">
                   <p>Se ha agendado una nueva cita.</p>
                   <small>Hace 1 hora</small>
 
-                  <div class="notif-actions-dropdown">
+                  <div class="notification-actions">
                     <a href="notifications.php">Ver detalles</a>
                     <p>  -  </p>
                     <button class="delete-one-dropdown">Limpiar</button>
@@ -115,15 +115,15 @@ const fullHeader = `
 
               </div>
 
-              <div class="notif-item" data-id="2">
+              <div class="notification-item" data-id="2">
 
                 <svg><use href="#notification"></use></svg>
 
-                <div class="notif-content-dropdown">
+                <div class="notification-content">
                   <p>Una cita ha sido CANCELADA.</p>
                   <small>Hace 2 hora</small>
 
-                  <div class="notif-actions-dropdown">
+                  <div class="notification-actions">
                     <a href="notifications.php">Ver detalles</a>
                     <p>  -  </p>
                     <button class="delete-one-dropdown">Limpiar</button>
@@ -132,13 +132,12 @@ const fullHeader = `
 
               </div>
 
-              <div class="notif-empty-dropdown">
+              <div class="notifications-message">
                 <p>No tienes más notificaciones.</p>
               </div>
 
             </div>
-
-            <div class="notif-footer">
+            <div class="notifications-footer">
               <a href="notifications.php">Ver todas</a>
               <button class="delete-all" id="delete-all-dropdown">Limpiar todas</button>
             </div>
@@ -158,124 +157,6 @@ const fullHeader = `
   </div>
 </header>
 `;
-// ==========================================================================
-// Configuración de los menús dinámicos navegables según el rol del usuario
-// ==========================================================================
-const menus = {
-  admin: [
-    {
-      text: "INICIO",
-      icon: "home",
-      href: "../pages/home.php",
-    },
-    {
-      text: "PACIENTES",
-      icon: "patients",
-      href: "../pages/admin_patients.php",
-    },
-    {
-      text: "PSICÓLOGOS",
-      icon: "human-brain",
-      href: "../pages/admin_psychologists.php",
-    },
-    {
-      text: "CERRAR SESIÓN",
-      icon: "logout",
-      href: "../php/logout.php",
-    },
-  ],
-
-  paciente: [
-    {
-      text: "INICIO",
-      icon: "home",
-      href: "../pages/home.php",
-    },
-    {
-      text: "PERFIL",
-      icon: "user",
-      href: "../pages/profile.php",
-    },
-    {
-      text: "NOTIFICACIONES",
-      icon: "bell",
-      href: "../pages/notifications.php",
-    },
-    {
-      text: "AGENDAMIENTO",
-      icon: "new-appointment",
-      href: "../pages/scheduling.php",
-    },
-    {
-      text: "PRÓXIMAS CITAS",
-      icon: "appointments",
-      href: "../pages/appointments.php",
-    },
-    {
-      text: "HISTORIAL DE CITAS",
-      icon: "history",
-      href: "../pages/appointments.php",
-    },
-    {
-      text: "DIRECTORIO",
-      icon: "directory",
-      href: "../pages/directory.php",
-    },
-    {
-      text: "CERRAR SESIÓN",
-      icon: "logout",
-      href: "../php/logout.php",
-    },
-  ],
-
-  psicologo: [
-    {
-      text: "INICIO",
-      icon: "home",
-      href: "../pages/home.php",
-    },
-    {
-      text: "PERFIL",
-      icon: "user",
-      href: "../pages/profile.php",
-    },
-    {
-      text: "NOTIFICACIONES",
-      icon: "bell",
-      href: "../pages/notifications.php",
-    },
-    {
-      text: "HORARIOS",
-      icon: "time",
-      href: "../pages/agenda.php",
-    },
-    {
-      text: "PRÓXIMAS CITAS",
-      icon: "appointments",
-      href: "../pages/appointments.php",
-    },
-    {
-      text: "HISTORIAL DE CITAS",
-      icon: "history",
-      href: "../pages/appointments.php",
-    },
-    {
-      text: "PACIENTES",
-      icon: "patients",
-      href: "../pages/patients.php",
-    },
-    {
-      text: "ASISTENCIA",
-      icon: "attendance",
-      href: "../pages/patients.php",
-    },
-    {
-      text: "CERRAR SESIÓN",
-      icon: "logout",
-      href: "../php/logout.php",
-    },
-  ],
-};
 
 // Inicializa el DOM
 document.addEventListener("DOMContentLoaded", () => {
@@ -305,26 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
     roleEl.textContent = roleLabels[role] || "USUARIO";
   }
 
-  // Renderiza los links del sidebar mapeados por rol
-  const sidebarLinks = container.querySelector("#sidebar-links");
-
-  if (sidebarLinks && menus[role]) {
-    sidebarLinks.innerHTML = menus[role]
-      .map(
-        (item) => `
-          <a href="${item.href}">
-            <svg class="icon-menu">
-              <use href="#${item.icon}"></use>
-            </svg>
-            ${item.text}
-          </a>
-        `,
-      )
-      .join("");
-  }
-
   // Restricciones estructurales específicas para Administradores
-  const actionsButtons = container.querySelector(".actions-buttons");
+  const actionsButtons = container.querySelector(".action-buttons");
 
   // Remueve los botones de perfil y notificaciones que el admin no requiere
   if (role === "admin" && actionsButtons) {
@@ -336,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
   localStorage.removeItem("deletedNotifs"); // ESTA LÍNEA SE PUEDE COMENTAR O DESCOMENTAR
 
   // Inicializa sub-módulos de eventos
+  renderSidebarLinks(container, role);
   setupTheme();
   setupSidebar();
   setupNotifications();
@@ -388,38 +252,12 @@ function setupTheme() {
   }
 }
 
-// Control del sidebar (menú lateral)
-
-function setupSidebar() {
-  const menuButton = document.getElementById("menu-button");
-  const closeMenu = document.getElementById("close-menu");
-  const sidebar = document.getElementById("menu-sidebar");
-
-  // Evento para abrir el menú
-  menuButton?.addEventListener("click", () => sidebar?.classList.add("active"));
-  closeMenu?.addEventListener("click", () =>
-    sidebar?.classList.remove("active"),
-  );
-
-  // Evento para cerrar el menú
-  document.addEventListener("click", (e) => {
-    if (
-      sidebar &&
-      menuButton &&
-      !menuButton.contains(e.target) &&
-      !sidebar.contains(e.target)
-    ) {
-      sidebar.classList.remove("active");
-    }
-  });
-}
-
 // Sistema de notificaciones (hardcodeadas)
 function setupNotifications() {
-  const notifButton = document.getElementById("notif-button");
-  const dropdown = document.getElementById("notif-dropdown");
+  const notifButton = document.getElementById("notification-button");
+  const dropdown = document.getElementById("notifications-dropdown");
   const deleteAllButton = document.getElementById("delete-all-dropdown");
-  const deleteAllPageButton = document.getElementById("del-all-button");
+  const deleteAllPageButton = document.getElementById("delete-all-button");
 
   // Evento para abrir/cerrar el dropdown de notificaciones
   notifButton?.addEventListener("click", (e) => {
@@ -459,7 +297,7 @@ function setupNotifications() {
   document.addEventListener("click", (e) => {
     // Desde el dropdown
     if (e.target.classList.contains("delete-one-dropdown")) {
-      const item = e.target.closest(".notif-item");
+      const item = e.target.closest(".notification-item");
       if (item) saveDeletedId(item.dataset.id);
     }
     // Desde la página externa de notificaciones
@@ -490,13 +328,13 @@ function saveDeletedId(id) {
 // Sincroniza el DOM real con los registros de eliminación locales
 function applyDeleted() {
   const deleted = localStorage.getItem("deletedNotifs");
-  const notifList = document.getElementById("notif-list");
-  const emptyMessage = document.getElementById("notif-empty-message");
+  const notifList = document.getElementById("notifications-list");
+  const emptyMessage = document.getElementById("notifications-message");
 
   // Escenario 1: El usuario barrió con todas las notificaciones de golpe
   if (deleted === "ALL") {
     document
-      .querySelectorAll(".notif-item, .card-notif")
+      .querySelectorAll(".notification-item, .notification-card")
       .forEach((el) => el.remove());
     if (emptyMessage) emptyMessage.style.display = "block";
     return;
@@ -507,14 +345,15 @@ function applyDeleted() {
   idsToEliminate.forEach((id) => {
     document.querySelectorAll(`[data-id="${id}"]`).forEach((el) => {
       // Elimina la card de la vista si existe, o el item directo del dropdown
-      const target = el.closest(".card-notif") || el.closest(".notif-item");
+      const target =
+        el.closest(".notification-card") || el.closest(".notification-item");
       target?.remove();
     });
   });
 
   // Control dinámico de lista vacía: si no quedan items visibles, muestra el aviso
   if (notifList) {
-    const activeItems = notifList.querySelectorAll(".notif-item");
+    const activeItems = notifList.querySelectorAll(".notification-item");
     if (activeItems.length === 0 && emptyMessage) {
       emptyMessage.style.display = "block";
     }

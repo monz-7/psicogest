@@ -1,11 +1,11 @@
 // ==========================================================================
-// ARCHIVO: TEMPLATE DEL HEADER EXCLUSIVO DEL LOGIN
+// ARCHIVO: TEMPLATE DEL HEADER EXCLUSIVO PARA LOGIN Y EL REGISTRO
 // Incluye únicamente el logotipo y el control de temas (claro/oscuro)
 // ==========================================================================
 
-// Contenido HTML del header específico para la página de login
+// Contenido HTML del header específico
 const loginHeader = `
-<header class="header-login">
+<header class="header-variation">
   <div class="header-container">
 
     <a href="login.php">

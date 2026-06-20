@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
 // CONTROLADOR DE LA MÁSCARA Y VALIDACIÓN
 // ==========================================================================
 function initRegistrationBirthdate(input) {
+  // GUARD: evita registrar los eventos más de una vez sobre el mismo elemento
+  if (input._birthdateInitialized) return;
+  input._birthdateInitialized = true;
   // ------------------------------------------------------------------------
-  // CONSTRUCCIÓN DE MÁSCARA DINÁMICA EN TIEMPO REAL (INPUT EVENT)
+  // CONSTRUCCIÓN DE MÁSCARA DINÁMICA
   // ------------------------------------------------------------------------
   input.addEventListener("input", (e) => {
     // Remover cualquier caracter que no sea un número
@@ -43,13 +46,13 @@ function initRegistrationBirthdate(input) {
   });
 
   // ------------------------------------------------------------------------
-  // VALIDACIÓN AL SALIR DEL CAMPO (BLUR EVENT)
+  // VALIDACIÓN AL SALIR DEL CAMPO
   // ------------------------------------------------------------------------
   input.addEventListener("blur", (e) => {
     const val = e.target.value;
 
     if (val) {
-      // Evita que dejen fechas incompletas basadas en la longitud de la máscara ("DD / MM / AAAA")
+      // Evita fechas incompletas basadas en la longitud de la máscara ("DD / MM / AAAA")
       if (val.length < 14) {
         input.setCustomValidity(
           "Por favor, ingresa la fecha completa en formato DD / MM / AAAA",

@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("../php/insert_patient.php", {
+      const response = await fetch("../php/patients/insert_patient.php", {
         method: "POST",
         body: formData,
       });
@@ -109,9 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modalBody) {
           modalBody.innerHTML = `
             <p class="modal-message">
-                Puedes iniciar sesión con tu <strong>nuevo usuario</strong> 
-                que es tu <strong>tipo de documento</strong> acompañado del 
-                <strong>número de documento</strong> o con el <strong>correo electrónico</strong> 
+                Puedes iniciar sesión con tu nuevo usuario
+                que es tu tipo de documento acompañado del 
+                número de documento o con el correo electrónico
                 que acabas de registrar.
             </p>
             <div class="credentials-data">
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // REDIRECCIÓN AUTOMÁTICA: Si el usuario no hace nada, se va al login en 20 segundos
         setTimeout(() => {
           window.location.href = "../pages/login.php";
-        }, 30000);
+        }, 20000);
       } else {
         alert(data.message || "Error desconocido.");
       }

@@ -64,7 +64,8 @@ function initGlobalDropdowns() {
     const isCustomComponent =
       dropdown.id === "month-dropdown" ||
       dropdown.id === "day-dropdown" ||
-      dropdown.id === "specialty-dropdown";
+      dropdown.id === "specialty-dropdown" ||
+      dropdown.id === "country-dropdown";
 
     if (isCustomComponent) return;
 
@@ -145,5 +146,5 @@ function attachDropdownItemsEvents(dropdown, options, selected) {
   });
 }
 
-// Exportación explícita al contexto global (Requerido por módulos asíncronos externos)
+// Exportación al contexto global (para usar en módulos externos)
 window.attachDropdownItemsEvents = attachDropdownItemsEvents;

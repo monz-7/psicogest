@@ -1,5 +1,5 @@
 // ==========================================================================
-// ARCHIVO: LÓGICA DEL MODO EDICIÓN Y ACTUALIZACIÓN DE PACIENTES
+// ARCHIVO: LÓGICA DEL MODO EDICIÓN Y ACTUALIZACIÓN DE USUARIOS
 // ==========================================================================
 
 // ==========================================================================
@@ -17,21 +17,33 @@ const DOC_MAP = {
   ot: "Otro (Extranjero)",
 };
 
-const DOC_OPTIONS = [
-  { value: "cc", label: "Cédula de Ciudadanía" },
-  { value: "ce", label: "Cédula de Extranjería" },
-  { value: "ti", label: "Tarjeta de Identidad" },
-  { value: "pa", label: "Pasaporte" },
-  { value: "ot", label: "Otro (Extranjero)" },
-];
+const DOC_OPTIONS = {
+  patient: [
+    { value: "cc", label: "Cédula de Ciudadanía" },
+    { value: "ce", label: "Cédula de Extranjería" },
+    { value: "ti", label: "Tarjeta de Identidad" },
+    { value: "pa", label: "Pasaporte" },
+    { value: "ot", label: "Otro (Extranjero)" },
+  ],
+  psychologist: [
+    { value: "cc", label: "Cédula de Ciudadanía" },
+    { value: "ce", label: "Cédula de Extranjería" },
+    { value: "pa", label: "Pasaporte" },
+    { value: "ot", label: "Otro (Extranjero)" },
+  ],
+};
 
 // Creación e inyección del contenedor Dropdown flotante en el DOM
 const dropdownGlobal = document.createElement("ul");
 dropdownGlobal.className = "global-dropdown";
-dropdownGlobal.innerHTML = DOC_OPTIONS.map(
-  (opt) => `<li data-value="${opt.value}">${opt.label}</li>`,
-).join("");
 document.body.appendChild(dropdownGlobal);
+
+function populateDropdown(userType) {
+  const options = DOC_OPTIONS[userType] || DOC_OPTIONS.patient;
+  dropdownGlobal.innerHTML = options
+    .map((opt) => `<li data-value="${opt.value}">${opt.label}</li>`)
+    .join("");
+}
 
 // ==========================================================================
 // CONTROLADORES DE EVENTOS Y POSICIONAMIENTO DEL DROPDOWN (UI)
@@ -39,11 +51,23 @@ document.body.appendChild(dropdownGlobal);
 
 function positionDropdown(element) {
   const rect = element.getBoundingClientRect();
-  dropdownGlobal.style.top = `${rect.bottom}px`;
+  const dropdownHeight = dropdownGlobal.offsetHeight || 200;
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const spaceAbove = rect.top;
+
   dropdownGlobal.style.left = `${rect.left}px`;
   dropdownGlobal.style.minWidth = `${rect.width}px`;
+
+  if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+    // Abre hacia arriba si no queda espacio abajo
+    dropdownGlobal.style.top = `${rect.top - dropdownHeight}px`;
+  } else {
+    // Abre hacia abajo (comportamiento normal)
+    dropdownGlobal.style.top = `${rect.bottom}px`;
+  }
 }
 
+// Cierra el dropdown
 function closeDropdown() {
   if (activeDropdown) {
     activeDropdown.classList.remove("open");
@@ -83,10 +107,12 @@ document.addEventListener("click", (e) => {
     closeDropdown(); // Cierra cualquier otro dropdown abierto
 
     activeDropdown = dropdown;
+    populateDropdown(dropdown.dataset.userType); // ← acá adentro
     dropdown.classList.add("open");
 
-    positionDropdown(selected);
     dropdownGlobal.style.display = "block";
+    positionDropdown(selected);
+
     return;
   }
 
@@ -126,6 +152,8 @@ function calculateAge(dateString) {
   }
   return age;
 }
+
+// Inicializa la máscara para la fecha de nacimiento
 
 function initBirthdateInput(input) {
   let originalValue = input.value;
@@ -184,7 +212,7 @@ window.editUser = function (data, userType) {
     <td><input name="surnames" value="${data.surnames ?? ""}"></td>
 
     <td>
-      <div class="dropdown doc-type-dropdown">
+      <div class="dropdown doc-type-dropdown" data-user-type="${userType}">
         <div class="dropdown-selected">
           <span class="dropdown-text">
             ${DOC_MAP[data.doc_type] || data.doc_type}
@@ -230,7 +258,7 @@ window.editUser = function (data, userType) {
         </div>
       </td>
 
-      <td>
+      <td title="Este campo no puede modificarse.">
         ${calculateAge(data.birth_date)} años
       </td>
 
@@ -248,7 +276,7 @@ window.editUser = function (data, userType) {
         >
       </td>
 
-      <td>
+      <td title="Este campo no puede modificarse.">
         ${data.country ?? ""}
       </td>
     `;
@@ -292,7 +320,7 @@ window.editUser = function (data, userType) {
 
     <td>
       <button
-        class="btn-save"
+        class="save-button"
         onclick="saveUser(
           '${data.uuid_user_profile}',
           '${userType}'
@@ -302,7 +330,7 @@ window.editUser = function (data, userType) {
       </button>
 
       <button
-        class="btn-cancel"
+        class="cancel-button"
         onclick="cancelEdit(
           '${data.uuid_user_profile}'
         )"
@@ -365,7 +393,7 @@ window.saveUser = function (uuid, userType) {
       row.querySelector('[name="license_number"]')?.value ?? "";
   }
 
-  fetch("../php/update_user.php", {
+  fetch("../php/users/update_user.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -394,7 +422,7 @@ window.cancelEdit = function (uuid) {
   const row = document.getElementById("row-" + uuid);
   if (!row) return;
 
-  // Restauración limpia del template HTML anterior a la mutación
+  // Restauración limpia del template HTML anterior
   row.classList.remove("editing-row");
   row.innerHTML = originalRows[uuid];
 
