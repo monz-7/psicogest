@@ -1,0 +1,92 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA BARRA LATERAL DE NAVEGACIÓN (MENU SIDEBAR)
+/* ========================================================================== */
+
+.menu-sidebar {
+  position: fixed;
+  top: 0;
+  left: -360px; /* Oculto por defecto a la izquierda */
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 20px;
+  color: white;
+  background: var(--primary-color);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25);
+  transition: left var(--slide-duration) var(--slide-transition);
+}
+
+.menu-sidebar.active {
+  left: 0; /* Despliegue en pantalla */
+}
+
+/* --- Cabecera del sidebar (Logo y Cierre) --- */
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.header-menu h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 46px;
+  line-height: 1;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transform: translateY(3px);
+  transition: transform var(--transform-duration) var(--transform-easing);
+  flex-shrink: 0;
+}
+
+.close-menu:active {
+  transform: scale(var(--press-scale));
+}
+
+/* --- Enlaces de navegación del sidebar --- */
+.menu-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  transition: all 0.2s var(--ease-out);
+}
+
+/* Iconos en cada enlace */
+.menu-sidebar svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+  flex-shrink: 0;
+}
+
+.menu-sidebar a:hover {
+  color: var(--primary-color);
+  background-color: white;
+}
+
+.menu-sidebar a:hover svg {
+  fill: var(--primary-color);
+}
+
+.menu-sidebar a:active {
+  transform: scale(var(--press-scale));
+}

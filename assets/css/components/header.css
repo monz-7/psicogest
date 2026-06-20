@@ -220,7 +220,7 @@
   align-items: center;
 }
 
-.actions-buttons {
+.action-buttons {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -269,105 +269,14 @@
 }
 
 /* ==========================================================================
-/* BARRA LATERAL DE NAVEGACIÓN (MENU SIDEBAR)
-/* ========================================================================== */
-
-.menu-sidebar {
-  position: fixed;
-  top: 0;
-  left: -360px; /* Oculto por defecto a la izquierda */
-  width: 300px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 12px 20px;
-  color: white;
-  background: var(--primary-color);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 8px 0 25px rgba(0, 0, 0, 0.25);
-  transition: left var(--slide-duration) var(--slide-transition);
-}
-
-.menu-sidebar.active {
-  left: 0; /* Despliegue en pantalla */
-}
-
-/* --- Cabecera del sidebar (Logo y Cierre) --- */
-.logo-close-menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 60px;
-}
-
-.logo-close-menu h2 {
-  margin: 10px 10px 30px 10px;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.close-menu {
-  font-size: 46px;
-  line-height: 1;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transform: translateY(-10px);
-  transition: transform var(--transform-duration) var(--transform-easing);
-}
-
-.close-menu:hover {
-  transform: translateY(var(--translate-y)) scale(var(--scale-factor));
-}
-
-.close-menu:active {
-  transform: translateY(var(--translate-y)) scale(var(--press-scale));
-}
-
-/* --- Enlaces de navegación del sidebar --- */
-.menu-sidebar a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  transition: all 0.2s var(--ease-out);
-}
-
-.menu-sidebar svg {
-  width: 22px;
-  height: 22px;
-  fill: white;
-}
-
-.menu-sidebar a:hover {
-  color: var(--primary-color);
-  background-color: white;
-}
-
-.menu-sidebar a:hover svg {
-  fill: var(--primary-color);
-}
-
-.menu-sidebar a:active {
-  transform: scale(var(--press-scale));
-}
-
-/* ==========================================================================
 /* DROPDOWN DE NOTIFICACIONES
 /* ========================================================================== */
 
-.notif-container {
+.notifications-container {
   position: relative;
 }
 
-.notif-dropdown {
+.notifications-dropdown {
   position: absolute;
   top: 36px;
   right: 0;
@@ -381,17 +290,17 @@
   overflow: hidden;
 }
 
-.notif-dropdown.show {
+.notifications-dropdown.show {
   display: flex;
 }
 
 /* --- Encabezado del dropdown --- */
-.notif-header {
+.header-notifications {
   margin: 0;
   border-bottom: 1px solid var(--gray-border);
 }
 
-.notif-header span {
+.header-notifications span {
   display: block;
   margin: 10px;
   font-size: 14px;
@@ -401,12 +310,12 @@
 }
 
 /* --- Lista e items del listado --- */
-.notif-list {
+.notifications-list {
   max-height: 250px;
   overflow-y: auto;
 }
 
-.notif-item {
+.notification-item {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -414,38 +323,38 @@
   border-bottom: 1px solid var(--gray-border);
 }
 
-.notif-item svg {
+.notification-item svg {
   width: 18px;
   height: 18px;
   fill: var(--primary-color);
   flex-shrink: 0;
 }
 
-.notif-item:hover {
+.notification-item:hover {
   background: var(--bg-hover-dropdown);
 }
 
 /* --- Bloques de contenido de notificación --- */
-.notif-content-dropdown {
+.notification-content {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.notif-content-dropdown p {
+.notification-content p {
   margin: 0;
   font-size: 14px;
   font-weight: normal;
   color: var(--text-color);
 }
 
-.notif-content-dropdown small {
+.notification-content small {
   font-size: 12px;
   font-weight: normal;
   color: gray;
 }
 
-.notif-empty-dropdown {
+.notifications-message {
   padding: 10px;
   font-size: 14px;
   font-weight: normal;
@@ -456,25 +365,25 @@
 }
 
 /* Enlaces y botones de acciones internas */
-.notif-actions-dropdown {
+.notification-actions {
   display: flex;
   gap: 10px;
   margin-top: 4px;
 }
 
-.notif-actions-dropdown a {
+.notification-actions a {
   font-size: 14px;
   font-weight: normal;
   color: var(--primary-color);
 }
 
-.notif-actions-dropdown p {
+.notification-actions p {
   font-size: 12px;
   font-weight: normal;
   color: var(--primary-color);
 }
 
-.notif-actions-dropdown button {
+.notification-actions button {
   font-size: 12px;
   font-weight: normal;
   color: var(--primary-color);
@@ -485,21 +394,21 @@
 }
 
 /* --- Pie de página del dropdown (Footer) --- */
-.notif-footer {
+.notifications-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--gray-border);
 }
 
-.notif-footer a {
+.notifications-footer a {
   margin: 10px 20px;
   font-size: 14px;
   font-weight: normal;
   color: var(--primary-color);
 }
 
-.notif-footer button {
+.notifications-footer button {
   margin: 10px 20px;
   font-size: 14px;
   font-weight: normal;

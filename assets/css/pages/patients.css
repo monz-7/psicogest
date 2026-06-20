@@ -1,0 +1,320 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA VISTA DE LOS PACIENTES Y REGISTRO DE ASISTENCIA
+/* ========================================================================== */
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL Y TEXTOS DE INSTRUCCIÓN
+   ========================================================================== */
+
+/* Tarjeta contenedora principal de la vista */
+.patients-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0; /* Espacio entre pestañas y container */
+  width: 100%;
+  min-height: 460px;
+  padding: 30px;
+  margin-bottom: 40px;
+  background: var(--secondary-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Párrafos e instrucciones del módulo */
+.instruction-patients p,
+.history-content p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+   SECCIÓN DE FILTROS, SELECTORES Y DROPDOWNS DE BÚSQUEDA
+   ========================================================================== */
+
+/* Contenedor general de filtros para pacientes */
+.filters-container-patients,
+.status-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Selector específico de ordenamiento */
+.order-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: auto;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+/* Evita márgenes residuales en el dropdown de filtros */
+.order-selector .dropdown {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+/* Elemento seleccionado (Dropdown en estado cerrado) */
+.filters-container-patients .dropdown-selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  padding: 10px;
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--primary-color);
+}
+
+/* Lista flotante de opciones */
+.filters-container-patients .dropdown-options {
+  position: absolute;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.filters-container-patients .dropdown-options li {
+  color: var(--primary-color);
+}
+
+/* Comportamiento hover e ítem seleccionado */
+.filters-container-patients .dropdown-options li:hover,
+.filters-container-patients .dropdown-options li.selected {
+  font-weight: bold;
+  color: #ffffff;
+  background: var(--primary-color);
+}
+
+/* Resaltado en negrita del dropdown de filtros al estar activo */
+.filters-container-patients .dropdown-selected.bold .dropdown-text {
+  font-style: normal;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.filters-container-patients .filter-bar {
+  margin-bottom: 0;
+}
+
+.filters-container-patients .filter-box {
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================================
+   GRILLA DE PACIENTES
+   ========================================================================== */
+
+/* Fila de información individual del paciente */
+.patient-content {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Nombre del paciente */
+.patient-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0px;
+  flex: 1;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+/* Icono */
+.patient-name svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ELEMENTOS DIVISORES
+   ========================================================================== */
+
+.line-v-patients {
+  width: 0px;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-left: 1px solid var(--gray-border);
+}
+
+.line-h-patients {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: none;
+  border-top: 1px solid var(--gray-border);
+}
+
+/* ==========================================================================
+   BOTONES DE ACCIÓN SOBRE PACIENTES
+   ========================================================================== */
+
+.patients-buttons-container,
+.actions-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* Estructura base de los botones */
+.patients-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-button);
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+/* --- Variaciones de ancho y color por ID --- */
+#view-patient-button {
+  width: 140px;
+  background-color: var(--primary-color);
+}
+
+#block-user-button {
+  width: 180px;
+  background-color: var(--red-bg-btn);
+}
+
+/* --- Estados interactivos comunes --- */
+#view-patient-button:hover,
+#block-user-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--shadow-soft);
+}
+
+#view-patient-button:active,
+#block-user-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--shadow-soft);
+}
+
+/* ==========================================================================
+   VARIACIÓN: DROPDOWN ACTUALIZAR ESTADO (ASISTENCIA)
+   ========================================================================== */
+
+/* Contenedor seleccionado del dropdown de estado alterno */
+.actions-container #status-dropdown .dropdown-selected {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 270px;
+  height: 36px;
+  padding: 0 12px;
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--text-button);
+  background-color: var(--primary-color);
+  border-radius: 6px;
+}
+
+/* Bloque interno de texto del dropdown */
+.actions-container #status-dropdown .dropdown-text {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: bold;
+  text-align: left;
+  color: var(--text-button);
+}
+
+/* Icono de flecha */
+.actions-container #status-dropdown .dropdown-selected svg.arrow-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--text-button);
+  transition: transform 0.2s;
+}
+
+/* Opciones e interactividad del dropdown de estados */
+.actions-container #status-dropdown .dropdown-options li {
+  padding: 8px 12px;
+  color: var(--text-color);
+}
+
+.actions-container #status-dropdown .dropdown-options li:hover {
+  font-weight: bold;
+  color: #ffffff;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+   MENSAJES 
+   ========================================================================== */
+
+.patients-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: gray;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.attendance-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: gray;
+  text-align: center;
+  border-bottom: none;
+  opacity: 0.8;
+}

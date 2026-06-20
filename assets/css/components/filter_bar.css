@@ -1,0 +1,52 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA BARRA DE BÚSQUEDA
+/* ========================================================================== */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  width: 100%;
+  max-width: 490px;
+  margin-bottom: 30px;
+}
+
+/* Icono de búsqueda */
+.filter-bar .filter-icon {
+  position: absolute;
+  left: 14px; /* Distancia desde el borde izquierdo */
+  top: 50%; /* Lo ubica al 50% de la altura del contenedor */
+  transform: translateY(-50%); /* Centrado vertical perfecto */
+  width: 18px;
+  height: 18px;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  pointer-events: none; /* Si el usuario da click sobre la lupita, el input se enfoca de todas formas */
+}
+
+/* Estilos específicos para este input */
+.filter-bar .filter-input {
+  flex: 1;
+  width: 100%;
+  max-width: 490px;
+  padding: 10px 12px 10px 40px;
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: var(--secondary-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Interacción */
+.filter-bar .filter-input:focus {
+  border-color: var(--primary-color);
+}
+
+/* Pone borde inferior si no hay resultados (tablas de gestión de usuarios) */
+.table-container.no-results {
+  border-bottom: 1px solid var(--gray-border);
+}

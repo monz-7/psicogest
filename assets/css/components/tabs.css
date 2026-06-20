@@ -1,0 +1,60 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA EL CONTROL DE PESTAÑAS
+/* ========================================================================== */
+
+/* Contenedor */
+.tab-container {
+  width: 100%;
+  min-height: 320px;
+  padding: 20px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  box-sizing: border-box;
+  /* Control de scroll interno */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Control visual de visualización de pestañas, se maneja desde JS */
+.tab-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ==========================================================================
+/* BOTONES SELECTORES DE LAS PESTAÑAS (TABS)
+/* ========================================================================== */
+
+.tabs {
+  display: flex;
+  justify-content: flex-start; /* Alineadas a la izquierda */
+  margin-bottom: 0px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: normal;
+  color: var(--tab-text);
+  background: var(--tab-color);
+  border: 1px solid var(--tab-color);
+  border-bottom: none; /* Unión visual con el contenedor inferior */
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.tab-button.active {
+  color: white;
+  font-weight: bold;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--tab-shadow);
+}

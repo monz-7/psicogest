@@ -1,0 +1,45 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL HEADER DIFERENTE AL GLOBAL
+/* ========================================================================== */
+
+/* ==========================================================================
+/* EN EL LOGIN
+/* ========================================================================== */
+
+/* Header del login */
+.header-variation {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Contenedor del header del login */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  gap: 100px;
+}
+
+/* ==========================================================================
+/* EN EL REGISTRATION
+/* ========================================================================== */
+
+/* Header del registro */
+.page-registration .header-variation {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Contenedor del header del registro */
+.page-registration .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  gap: 100px;
+}

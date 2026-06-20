@@ -30,11 +30,16 @@
   box-shadow: var(--hover-shadow);
 }
 
+.modal-change-pass {
+  width: 450px;
+}
+
 /* ==========================================================================
 /* TEXTOS Y CONTENIDOS
 /* ========================================================================== */
 
-.modal-title {
+.modal-title,
+.modal-change-pass .modal-title {
   margin-top: 0; /* Remueve márgenes residuales internos de etiquetas h2/h3 */
   margin-bottom: 12px;
   font-size: 20px;
@@ -69,19 +74,22 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-top: 24px;
 }
 
 /* Base unificada para botones internos del modal */
-.btn-copy,
-.btn-close,
-.btn-ok {
+.copy-button,
+.close-button,
+.ok-button,
+.save-button-modal {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 36px;
   padding: 10px 16px; /* Ajuste balanceado horizontal */
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--text-button);
   background: transparent;
@@ -96,34 +104,41 @@
 
 /* --- Variaciones de colores por tipo de acción --- */
 
-.btn-copy,
-.btn-ok {
+.copy-button,
+.ok-button {
   background: var(--primary-color);
 }
 
-.btn-close {
+.close-button {
   background: var(--red-bg-btn);
 }
 
+.save-button-modal {
+  background: var(--green-bg-btn);
+}
+
 /* Modificador específico: botón de ACEPTAR a la izquierda */
-.btn-ok {
-  margin-right: auto;
+.ok-button {
+  display: inline-flex;
+  margin-left: auto;
 }
 
 /* ==========================================================================
 /* ESTADOS DINÁMICOS E INTERACTIVOS
 /* ========================================================================== */
 
-.btn-copy:hover,
-.btn-close:hover,
-.btn-ok:hover {
+.copy-button:hover,
+.close-button:hover,
+.ok-button:hover,
+.save-button-modal:hover {
   box-shadow: var(--shadow-soft);
   transform: scale(var(--hover-scale-strong));
 }
 
-.btn-copy:active,
-.btn-close:active,
-.btn-ok:active {
+.copy-button:active,
+.close-button:active,
+.ok-button:active,
+.save-button-modal:active {
   box-shadow: var(--shadow-soft);
   transform: scale(var(--press-scale));
 }

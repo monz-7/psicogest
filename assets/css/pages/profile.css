@@ -1,0 +1,530 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL PERFIL DE USUARIO (PROFILE)
+/* ========================================================================== */
+
+/* ==========================================================================
+   CONTENEDORES Y MAQUETACIÓN GENERAL (LAYOUT)
+   ========================================================================== */
+
+/* Tarjeta contenedora principal */
+.profile-card {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 30px;
+  margin-bottom: 0;
+  background: var(--secondary-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Contenedor del perfil de usuario */
+.profile-container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Formulario específico para actualización de contraseña */
+.change-password-form {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Línea vertical divisora de las columnas principales */
+.line-v-profile {
+  flex: 0 0 2px; /* Fijo: ni se encoge ni crece */
+  width: 2px;
+  align-self: stretch;
+  margin: 0 40px;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+   COLUMNA IZQUIERDA: PANEL DE ACCIONES
+   ========================================================================== */
+
+/* Columna de control de botones */
+.left-column {
+  position: relative;
+  flex: 0 0 260px; /* Fijo: mantiene las dimensiones del panel lateral */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+/* Contenedor de los botones */
+.container-buttons {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Líneas horizontales conectadas a la linea vertical */
+.line-h-buttons {
+  position: absolute;
+  top: 50%;
+  left: 180px;
+  width: 120px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: var(--primary-color);
+  pointer-events: none;
+}
+
+/* Estado activo manejado por JS */
+.line-h-buttons.line-active {
+  background-color: var(--green-bg-btn) !important;
+  transition: background-color var(--transition-normal);
+}
+
+/* Botón base de cambio de sección del perfil */
+.profile-button {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 220px;
+  gap: 10px;
+  margin: 0;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-button);
+  background: var(--primary-color);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.profile-button svg {
+  width: 40px;
+  height: 40px;
+  fill: white;
+  flex-shrink: 0;
+  transition: transform var(--transition-normal);
+}
+
+.profile-button .button-text {
+  flex: 1; /* Ocupa el espacio restante horizontal */
+  text-align: left;
+}
+
+/* --- Estados interactivos de los botones laterales --- */
+
+.profile-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--shadow-hover);
+}
+
+.profile-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--shadow-soft);
+}
+
+/* Botón activo (verde) cuando el formulario/módulo respectivo está desplegado */
+.profile-button.active {
+  background-color: var(--green-bg-btn);
+  border-color: var(--green-bg-btn);
+}
+
+.profile-button.active:hover {
+  background-color: var(--green-bg-btn);
+}
+
+/* ==========================================================================
+   COLUMNA DERECHA: CAMPOS E INFORMACIÓN DE USUARIO
+   ========================================================================== */
+
+/* Bloque dinámico de datos */
+.right-column {
+  flex: 1; /* Ocupa todo el espacio restante */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Nombre del usuario activo */
+.right-column .name-patient,
+.right-column .name-psychologist {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 62px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.right-column .name-psychologist {
+  margin-bottom: 20px;
+}
+
+.right-column .specialties {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 62px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Iconos */
+.right-column svg {
+  width: 36px;
+  height: 36px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* Distribución de campos en filas de dos columnas */
+.row-profile,
+.row-form-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Celda contenedora individual de campo (Icono + Caja) */
+.field-profile {
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+/* Agrupador para inputs compuestos */
+.info-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Cajas estáticas de texto del perfil */
+.text {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 140px;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  color: var(--text-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   DISEÑO DE CELDAS COMPUESTAS
+   ========================================================================== */
+
+/* Caja contenedora compuesta (Ubicación, Documento y Teléfono) */
+.profile-box {
+  display: inline-flex !important;
+  justify-content: flex-start !important;
+  align-items: center;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Sub-celda izquierda para identificadores o banderas */
+.profile-box .prefix-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.03);
+  border-right: 1px solid var(--primary-color);
+  flex-shrink: 0;
+}
+
+/* Prefijo de texto (Ej: CC, TI, CE, PA) */
+.profile-box .label-prefix {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Proporciones de las banderas (Flag Icons) */
+.profile-box .fi {
+  display: inline-block;
+  width: 24px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  line-height: 1;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+/* Sub-celda derecha para los valores reales */
+.profile-box .info-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Previene desbordamiento en textos muy largos */
+}
+
+/* ==========================================================================
+   MODIFICACIÓN Y EDICIÓN DE DATOS
+   ========================================================================== */
+
+#edit-names {
+  width: 175px;
+}
+
+#edit-surnames {
+  width: 210px;
+}
+
+#edit-profile-form input {
+  font-size: 16px;
+  padding-right: 12px !important;
+}
+
+/* Dropdown de países dentro del formulario del perfil */
+.field-profile #country-dropdown .dropdown-text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Compatibilidad con plugin internacional (intl-tel-input) */
+.field-profile .iti__selected-dial-code,
+.field-profile .iti input::placeholder,
+.field-profile .iti input:not(:placeholder-shown) {
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   SELECTOR DE ESPECIALIDADES
+   ========================================================================== */
+
+.specialties-edit-container {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.specialties-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.checkbox-group-specialties {
+  display: grid;
+  grid-template-columns: 240px 220px 290px 1fr;
+  gap: 0px;
+  max-height: 180px;
+  padding: 12px;
+  margin: 30px 0;
+  background: var(--card-bg);
+  border: 1px solid var(--gray-border);
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.profile-checkbox-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Label del checkbox personalizado */
+.checkbox-group-specialties .checkbox-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: var(--primary-color);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.checkbox-group-specialties .checkbox-text {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Evita que especialidades largas deformen el grid */
+}
+
+/* Ocultar checkbox nativo del sistema */
+.checkbox-group-specialties .checkbox-label input[type="checkbox"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Caja simulada para el checkbox personalizado */
+.checkbox-custom {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-top: 0;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.checkbox-group-specialties .checkbox-label:hover .checkbox-custom {
+  box-shadow: var(--hover-shadow-input);
+}
+
+/* Estado de selección (Checked) */
+.checkbox-group-specialties .checkbox-label input:checked ~ .checkbox-custom {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Checkmark blanco interno dibujado mediante bordes */
+.checkbox-group-specialties .checkbox-custom::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 4px;
+  top: -1px;
+  width: 5px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-group-specialties
+  .checkbox-label
+  input:checked
+  ~ .checkbox-custom::after {
+  display: block;
+}
+
+/* ==========================================================================
+   FORMULARIO DE CAMBIO DE CONTRASEÑA
+   ========================================================================== */
+
+/* Limpia márgenes de inputs globales dentro de la tarjeta de perfil */
+.profile-card .field-input {
+  margin-top: 0 !important;
+  margin-bottom: 30px;
+}
+
+/* Bloque de texto descriptivo de los requisitos */
+.password-requirements {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 40px 0 40px 44px;
+}
+
+/* Evita margen en el último input antes de los requisitos */
+#container-repeat_password {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   BOTONES DE ACCIÓN INFERIORES (CANCELAR / GUARDAR CAMBIOS)
+   ========================================================================== */
+
+.action-buttons-profile {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* Botones de pie de formulario */
+.action-button-profile {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  padding: 20px;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-button);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+.action-button-profile svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-button);
+  flex-shrink: 0;
+}
+
+/* Variaciones de color */
+.cancel-button-profile {
+  background: var(--red-bg-btn);
+}
+
+.save-button-profile {
+  background: var(--green-bg-btn);
+}
+
+/* --- Estados interactivos --- */
+
+.cancel-button-profile:hover,
+.save-button-profile:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--hover-shadow);
+}
+
+.cancel-button-profile:active,
+.save-button-profile:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--soft-shadow);
+}

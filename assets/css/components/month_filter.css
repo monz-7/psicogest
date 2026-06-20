@@ -1,0 +1,108 @@
+/* ==========================================================================
+/* ARCHIVO: FILTRO DE BÚSQUEDA POR MES
+/* ========================================================================== */
+
+.month-filter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  background: transparent;
+}
+
+.month-filter svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.filter-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: transparent;
+}
+
+/* --- DROPDOWN PERSONALIZADO DEL FILTRO --- */
+.dropdown-filter {
+  position: relative;
+  width: 200px;
+  font-size: 14px;
+}
+
+.dropdown-selected-month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 36px;
+  padding: 2px 12px;
+  color: var(--primary-color);
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dropdown-filter-text {
+  font-size: 14px;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.dropdown-selected-month svg.arrow-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--primary-color);
+  transition: transform 0.2s;
+}
+
+/* Estado abierto: Animaciones y despliegues */
+.dropdown-filter.open .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.dropdown-filter.open .dropdown-months-options {
+  display: block;
+  max-height: 109px;
+}
+
+.dropdown-selected-month.bold .dropdown-filter-text {
+  font-style: normal;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* --- LISTA DE OPCIONES DEL DROPDOWN --- */
+.dropdown-months-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: none;
+  max-height: 180px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--dropdown-bg);
+  box-shadow: var(--box-shadow);
+  overflow-y: auto;
+}
+
+.dropdown-months-options li {
+  padding: 10px;
+  font-size: 14px;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-months-options li:hover,
+.dropdown-months-options li.selected {
+  color: #fff;
+  font-weight: bold;
+  background: var(--primary-color);
+}

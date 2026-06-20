@@ -29,6 +29,7 @@
   width: 100%;
 }
 
+/* Texto de la opción seleccionada dentro del dropdown */
 .dropdown-selected.bold .dropdown-text {
   color: var(--text-color);
   font-weight: bold;

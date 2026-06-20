@@ -1,0 +1,265 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA LA INTERFAZ DE CITAS E HISTORIAL (APPOINTMENTS)
+/* ========================================================================== */
+
+/* ==========================================================================
+   ESTRUCTURA PRINCIPAL Y CONTENEDORES
+   ========================================================================== */
+
+/* Tarjeta base del módulo de citas */
+.appointments-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0px; /* Espacio entre pestañas y container */
+  width: 100%;
+  padding: 30px;
+  background: var(--secondary-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Línea horizontal divisora del módulo */
+.line-h-appointments {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid var(--gray-border);
+}
+
+/* ==========================================================================
+   BLOQUE DE VISTA ACTIVA (PRÓXIMAS CITAS)
+   ========================================================================== */
+
+/* Contenedor de bloque para tarjeta de cita individual */
+.appointment-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  margin-bottom: 0;
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.appointment-container p {
+  width: 100%;
+  margin: 0px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  color: var(--text-color);
+}
+
+.appointment-container svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+  vertical-align: text-bottom;
+  position: relative;
+  top: -2px;
+}
+
+/* ==========================================================================
+   BOTONES DE ACCIÓN E INTERACCIONES
+   ========================================================================== */
+
+.buttons-container {
+  display: flex;
+  margin-right: auto;
+  gap: 20px;
+}
+
+/* Botón base del módulo de gestión de citas */
+.appointments-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 40px;
+  padding: 20px;
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* --- Variaciones de color por ID de acción --- */
+
+#reschedule-button {
+  background-color: var(--yellow-bg-btn); /* Reprogramar (Amarillo/Dorado) */
+}
+
+#cancel-btn {
+  background-color: var(--red-bg-btn); /* Cancelar (Rojo) */
+}
+
+/* --- Estados interactivos de los botones --- */
+
+.appointments-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--shadow-hover);
+}
+
+.appointments-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--shadow-soft);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE FILTROS DE BÚSQUEDA
+   ========================================================================== */
+
+.history-instruction p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.filters-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  width: 100%;
+}
+
+.filters-container .filter-bar {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   HISTORIAL DE CITAS Y BADGES DE ESTADO
+   ========================================================================== */
+
+/* Bloque contenedor del registro histórico */
+.history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Distribución de datos del historial */
+.history-content {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: start;
+  gap: 20px;
+}
+
+.history-content p {
+  margin: 0px;
+  flex: 1;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.history-content svg {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+  vertical-align: text-bottom;
+  position: relative;
+  top: -2px;
+}
+
+/* Separador vertical interno */
+.line-v-history {
+  width: 0px;
+  height: 100%;
+  margin: 0;
+  border: none;
+  border-left: 1px solid var(--gray-border);
+}
+
+/* --- Badges de Estado (Etiquetas) --- */
+
+.history-content .appointment-status {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 37px;
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.history-content span {
+  width: 120px;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  align-self: flex-start;
+  border-radius: 8px;
+}
+
+/* --- Variaciones de color por ID de estado --- */
+
+#status-1 {
+  color: var(--active-text-badge);
+  background: var(--active-bg-badge); /* Cumplida (Verde) */
+}
+
+#status-2 {
+  color: var(--inactive-text-badge);
+  background: var(--inactive-bg-badge); /* Incumplida (Rojo) */
+}
+
+/* ==========================================================================
+   MENSAJES INFORMATIVOS
+   ========================================================================== */
+
+.appointments-message {
+  padding: 0;
+  font-size: 16px;
+  font-weight: normal;
+  color: gray;
+  text-align: center;
+  border-bottom: none;
+  opacity: 0.8;
+}
+
+#tab2 .appointments-message {
+  margin-top: 20px;
+}
+
+/* Mensajes alternos del historial controlados dinámicamente desde JS */
+.history-message {
+  display: none;
+  padding: 0;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: gray;
+  text-align: center;
+  opacity: 0.8;
+}

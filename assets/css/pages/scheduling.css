@@ -7,7 +7,7 @@
 /* ========================================================================== */
 
 /* TARJETA CONTENEDORA */
-.card-scheduling {
+.scheduling-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -263,27 +263,28 @@
   justify-content: flex-end;
 }
 
-.new-appmnt-button {
+.schedule-button {
   width: auto;
-  padding: 14px 28px;
+  padding: 20px;
   background: var(--primary-color);
   color: var(--text-button);
-  font-size: 18px;
+  font-size: 20px;
+  text-align: center;
   font-weight: bold;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   box-shadow: var(--shadow-soft);
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
 }
 
-.new-appmnt-button:hover {
-  transform: translateY(-2px);
+.schedule-button:hover {
+  transform: scale(var(--hover-scale-strong));
   box-shadow: var(--shadow-hover);
 }
 
-.new-appmnt-button:active {
+.schedule-button:active {
   transform: translateY(0);
 }

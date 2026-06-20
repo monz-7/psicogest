@@ -16,7 +16,7 @@
 }
 
 /* Tarjeta contenedora */
-.card-registration {
+.registration-card {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,7 @@
   margin: 0 auto 40px auto;
   border-radius: 16px;
   gap: 30px;
+  box-shadow: var(--shadow-soft);
 }
 
 /* Contenedor del formulario (Create) */
@@ -89,13 +90,13 @@
 /* ELEMENTOS DE TEXTO Y SECCIONES
 /* ========================================================================= */
 
-.card-registration h2 {
+.registration-card h2 {
   margin: 0;
   font-size: 20px;
   color: var(--primary-color);
 }
 
-.subtitle {
+.location-label {
   margin-top: 30px;
   font-size: 18px;
   font-weight: bold;
@@ -103,13 +104,13 @@
   align-self: flex-start;
 }
 
-.instruction {
+.location-instruction {
   align-self: flex-start;
   margin-bottom: 20px;
 }
 
 /* Línea horizontal divisora */
-.divider-line-registration {
+.line-h-registration {
   width: 100%;
   margin: 20px 0 20px;
   border: none;
@@ -326,94 +327,10 @@
 }
 
 /* ==========================================================================
-/* DROPDOWN COMPLEMENTARIO DE SELECCIÓN DE PAÍSES
-/* ========================================================================== */
-
-#country-select-wrapper {
-  width: 100%;
-  margin-top: 0;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-#country-select-wrapper.show {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-#country-dropdown {
-  position: relative;
-  width: 100%;
-}
-
-#country-dropdown .dropdown-selected {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 36px;
-  padding: 0 12px;
-  font-size: 14px;
-  font-weight: normal;
-  color: var(--text-color);
-  background: transparent;
-  border: 1px solid var(--primary-color);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-#country-dropdown .dropdown-selected:hover {
-  box-shadow: var(--hover-shadow-input);
-}
-
-#country-dropdown.is-active .dropdown-selected {
-  outline: 1px solid var(--primary-color);
-  border-color: var(--primary-color);
-  box-shadow: var(--hover-shadow-input);
-}
-
-#country-dropdown .dropdown-text {
-  font-size: 14px;
-  font-style: italic;
-  color: var(--input-hint);
-}
-
-#country-dropdown .dropdown-selected.bold .dropdown-text {
-  font-style: normal;
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-#country-options li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#country-options .fi {
-  width: 20px;
-  height: 15px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-#country-dropdown .arrow-icon {
-  width: 18px;
-  height: 18px;
-  fill: var(--primary-color);
-  flex-shrink: 0;
-}
-
-/* ==========================================================================
 /* BOTÓN DE ENVÍO DE FORMULARIO (SUBMIT)
 /* ========================================================================== */
 
-.btn-submit {
+.register-button {
   display: block;
   margin: 40px 0 0 auto;
   padding: 20px;
@@ -423,7 +340,7 @@
   text-align: center;
   background: var(--primary-color);
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   box-shadow: var(--shadow-soft);
   transition:
@@ -431,12 +348,12 @@
     box-shadow var(--transition-normal);
 }
 
-.btn-submit:hover {
+.register-button:hover {
   transform: scale(var(--hover-scale-strong));
   box-shadow: var(--hover-shadow);
 }
 
-.btn-submit:active {
+.register-button:active {
   transform: scale(var(--press-scale));
   box-shadow: var(--soft-shadow);
 }

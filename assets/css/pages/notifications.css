@@ -6,7 +6,7 @@
 /* BOTÓN DE ACCIÓN MASIVA (LIMPIAR TODAS)
 /* ========================================================================== */
 
-.del-all-button {
+.delete-all-button {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
@@ -22,7 +22,7 @@
 }
 
 /* Icono dentro del botón */
-.del-all-button svg {
+.delete-all-button svg {
   display: block;
   width: 22px;
   height: 22px;
@@ -33,23 +33,23 @@
 }
 
 /* BOTONES CUANDO SE INTERACTÚA */
-.del-all-button:hover {
+.delete-all-button:hover {
   transform: scale(var(--hover-scale-soft));
 }
 
-.del-all-button svg:hover {
+.delete-all-button svg:hover {
   transform: scale(var(--hover-scale-strong));
 }
 
 /* BOTÓN EN ESTADO ACTIVO (PRESIONADO) */
-.del-all-button:active {
+.delete-all-button:active {
   transform: scale(var(--press-scale));
 }
 
 /* ==========================================================================
-/* TARJETAS DE AVISO (NOTIF CARDS)
+/* TARJETAS DE AVISO (NOTIFICATION-CARDS)
 /* ========================================================================== */
-.card-notif {
+.notification-card {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -63,14 +63,14 @@
 }
 
 /* DETALLES DE LA NOTIFICACIÓN */
-.notif-detail {
+.notification-detail {
   display: flex;
   gap: 20px;
   align-items: flex-start;
 }
 
 /* Icono de campana a la izquierda */
-.notif-detail svg {
+.notification-detail svg {
   width: 22px;
   height: 22px;
   fill: var(--primary-color);
@@ -78,14 +78,14 @@
 }
 
 /* BLOQUE DE CONTENIDO DE LA NOTIFICACIÓN */
-.notif-content {
+.notification-content-card {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.notif-content p {
+.notification-content-card p {
   margin: 0;
   color: var(--text-color);
   font-size: 18px;
@@ -96,7 +96,7 @@
 /* ÁREA DE ACCIONES SECUNDARIAS (METADATOS Y LIMPIEZA)
 /* ========================================================================== */
 
-.notif-actions {
+.notification-actions-card {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -104,21 +104,21 @@
 }
 
 /*Tiempo de la notificación */
-.notif-actions small {
+.notification-actions-card small {
   color: gray;
   font-size: 14px;
   font-weight: normal;
 }
 
 /* Separador: - */
-.notif-actions p {
+.notification-actions-card p {
   color: var(--primary-color);
   font-size: 14px;
   font-weight: normal;
 }
 
 /* Botón para limpiar cada notificación */
-.notif-actions button {
+.notification-actions-card button {
   border: none;
   background: none;
   color: var(--primary-color);
@@ -130,12 +130,12 @@
 }
 
 /* Hover */
-.notif-actions button.delete-one:hover {
+.notification-actions-card button.delete-one:hover {
   transform: scale(var(--hover-scale-soft));
 }
 
 /* Botón presionado */
-.notif-actions button.delete-one:active {
+.notification-actions-card button.delete-one:active {
   transform: scale(var(--press-scale));
 }
 
@@ -143,7 +143,7 @@
 /* MENSAJE QUE INCIDA QUE YA NO HAY MÁS NOTIFICACIONES
 /* ========================================================================== */
 
-.notif-empty {
+.notifications-page-message {
   padding: 10px;
   text-align: center;
   color: gray;

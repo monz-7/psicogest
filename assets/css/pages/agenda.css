@@ -1,0 +1,174 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA AGENDA Y HORARIOS
+/* ========================================================================== */
+
+/* ==========================================================================
+   CONTENEDORES Y ESTRUCTURA DE LA AGENDA
+   ========================================================================== */
+
+/* Tarjeta contenedora */
+.agenda-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--secondary-bg);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Línea horizontal divisora */
+.line-h-agenda {
+  width: 100%;
+  margin: 0;
+  margin-right: 120px;
+  margin-left: 120px;
+  border: none;
+  border-top: 1px solid var(--gray-border);
+}
+
+/* ==========================================================================
+   GRILLA Y DISEÑO DE BLOQUES DE HORARIOS
+   ========================================================================== */
+
+/* Contenedor principal de bloques de disponibilidad */
+.availability-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin: 0;
+}
+
+/* Contenedor vertical de tarjetas de horarios */
+.horary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Título de cada bloque horario */
+.horary-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Agrupadores internos de bloques */
+.horary-group {
+  width: 100%;
+  line-height: 24px;
+  margin-bottom: 8px; /* Separación entre bloques de días y horas */
+}
+
+/* ==========================================================================
+   TARJETAS DE HORARIOS E INTERACCIONES
+   ========================================================================== */
+
+/* Tarjeta individual del horario */
+.horary-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15px;
+  width: 500px;
+  height: 300px;
+  padding: 25px;
+  margin: 0 0 10px;
+  color: var(--text-color);
+  background: var(--secondary-bg);
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Elementos SVG internos de la tarjeta */
+.horary-card svg {
+  display: inline-block; /* Cambia a bloque en línea para controlar dimensiones exactas */
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  fill: var(--primary-color);
+  flex-shrink: 0;
+  transition: fill 200ms ease;
+  vertical-align: text-bottom;
+  position: relative;
+  top: -2px; /* Ajuste para que el centro del icono ajuste con el del texto */
+}
+
+/* Ajuste para los textos que acompañan al icono en la misma línea */
+.horary-group strong,
+.horary-group br + text,
+.horary-group text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* --- Estados interactivos de la tarjeta --- */
+.horary-card:hover {
+  background: var(--primary-color);
+  color: var(--text-button);
+}
+
+.horary-card:hover svg {
+  fill: var(--text-button);
+}
+
+/* ==========================================================================
+   BOTÓN PARA EDITAR HORARIOS 
+   ========================================================================== */
+
+.edit-agenda-button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  height: 46px;
+  padding: 10px;
+  margin: 10px 120px 10px auto;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-button);
+  background: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Icono interno del botón de edición */
+.edit-agenda-button svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-button);
+  flex-shrink: 0;
+}
+
+/* --- Estados de pulsación y hover del botón --- */
+.edit-agenda-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--hover-shadow);
+}
+
+.edit-agenda-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--soft-shadow);
+}

@@ -1,106 +1,123 @@
 /* ==========================================================================
-/* ARCHIVO: ESTILOS DEL INICIO (HOME)
+/* ARCHIVO: ESTILO DEL LOGIN
 /* ========================================================================== */
 
 /* ==========================================================================
-/* ENCABEZADO Y BIENVENIDA
+/* MAQUETACIÓN Y TARJETA CONTENEDORA
 /* ========================================================================== */
 
-/* Mensaje de bienvenida */
-.main-content h2 {
-  font-size: 18px;
-  margin: 40px 0 20px 0;
+/* Contenedor principal */
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjeta contenedora */
+.login-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 600px;
+  background: var(--secondary-bg);
+  padding: 40px;
+  margin: 40px 0;
+  border-radius: 16px;
+  gap: 30px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Título del login */
+.login-card .login-title {
+  margin: 0;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+/* Formulario del login dentro de la tarjeta */
+.login-card .login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Subtitulo (label) del campo para rol de usuario */
+.field-container h3 {
+  font-size: 16px;
+  margin: 20px 0 20px 0;
   color: var(--text-color);
 }
 
-/* ==========================================================================
-/* CONTENEDOR PRINCIPAL (GRID / FLEX DE ACCESOS)
-/* ========================================================================== */
-
-/* Tarjeta contenedora */
-.card-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-  flex-wrap: wrap;
-  background: var(--secondary-bg);
-  padding: 60px;
-  margin: 40px 0;
-  border-radius: 16px;
-}
-
-/* Línea vertical divisora */
-.divider {
-  width: 2px;
-  height: 220px;
-  background: var(--primary-color);
+/* Selector nativo de rol oculto */
+#role {
+  display: none;
 }
 
 /* ==========================================================================
-/* BOTONES DE ACCIÓN (CARD BUTTONS)
+/* BOTÓN DE ACCIÓN PRINCIPAL (INGRESAR)
 /* ========================================================================== */
 
-/* Botones de funciones grandes */
-.card-button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 180px;
-  padding: 10px;
+/* Botón */
+.login-button {
+  display: block;
+  margin: 40px 0 0 auto;
   background: var(--primary-color);
   color: var(--text-button);
-  text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  line-height: 1.2;
-  text-decoration: none; /* quita el subrayado típico de los enlaces */
   border: none;
-  border-radius: 16px;
+  border-radius: 12px;
+  text-align: center;
   cursor: pointer;
+  padding: 20px;
   box-shadow: var(--shadow-soft);
   transition:
     transform var(--transition-normal),
     box-shadow var(--transition-normal);
 }
 
-/* Icono dentro de los botones */
-.card-button svg {
-  width: 80px;
-  height: 80px;
-  fill: white;
-  flex-shrink: 0;
-  transition: transform var(--transition-normal);
-}
-
-/* Hover de los botones grandes */
-.card-button:hover {
+/* Hover del botón */
+.login-button:hover {
   transform: scale(var(--hover-scale-strong));
   box-shadow: var(--shadow-hover);
 }
 
 /* Botón en estado activo (presionado) */
-.card-button:active {
+.login-button:active {
   transform: scale(var(--press-scale));
   box-shadow: var(--shadow-soft);
 }
 
+/* Linea horizontal divisora */
+.line-h-login {
+  border: none;
+  border-top: 2px solid var(--primary-color);
+  margin: 40px 0 20px;
+}
+
 /* ==========================================================================
-/* PIE DE PÁGINA Y ENLACE AL DIRECTORIO
+/* ENLACES DE RECUPERACIÓN Y NAVEGACIÓN
 /* ========================================================================== */
 
-/* Pie de página: enlace al directorio */
-.directory-link {
-  font-size: 16px;
+.forgot-links,
+.register-link {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+/* Link al registro */
+.register-link {
+  gap: 10px;
   color: var(--text-color);
 }
 
-.directory-link a {
+/* Enlaces */
+.forgot-links a,
+.register-link a {
   color: var(--primary-color);
   display: inline-block;
   font-weight: bold;
+  font-size: 16px;
   text-decoration: none;
   position: relative;
   transition:
@@ -108,25 +125,28 @@
     transform var(--press-duration) var(--press-transition);
 }
 
-/* Enlace cuando se interactúa */
-/* Pseudo-elemento para el subrayado expansivo animado en el hover */
-.directory-link a::after {
+/* Interacción de los enlaces */
+/* Cada enlace tiene un pseudo-elemento ::after que es una línea decorativa */
+.forgot-links a::after,
+.register-link a::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -2px;
   width: 0%;
-  height: 2px;
+  height: 1.5px;
   background: currentColor;
   transition: width var(--transition-normal);
 }
 
 /* Expande la linea de izquierda a derecha hasta cubrir todo el ancho del enlace */
-.directory-link a:hover::after {
+.forgot-links a:hover::after,
+.register-link a:hover::after {
   width: 100%;
 }
 
-/* Estado activo del enlace (Feedback de presión) */
-.directory-link a:active {
+/* Cuando se presiona el enlace */
+.forgot-links a:active,
+.register-link a:active {
   transform: scale(var(--press-scale));
 }

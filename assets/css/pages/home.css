@@ -1,0 +1,151 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DEL INICIO (HOME)
+/* ========================================================================== */
+
+/* ==========================================================================
+/* ENCABEZADO Y BIENVENIDA
+/* ========================================================================== */
+
+/* Mensaje de bienvenida */
+.main-content .welcome-message {
+  font-size: 18px;
+  margin: 40px 0 20px 0;
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+/* CONTENEDOR PRINCIPAL (GRID / FLEX DE ACCESOS)
+/* ========================================================================== */
+
+/* Tarjeta contenedora */
+.home-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  background: var(--secondary-bg);
+  padding: 60px;
+  margin: 40px 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Línea vertical divisora */
+.line-v-home {
+  width: 1px;
+  height: 180px;
+  background: var(--primary-color);
+}
+
+/* ==========================================================================
+/* BOTONES DE ACCIÓN (CARD BUTTONS)
+/* ========================================================================== */
+
+/* Botones de funciones grandes */
+.main-function-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  padding: 10px;
+  background: var(--primary-color);
+  color: var(--text-button);
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none; /* quita el subrayado típico de los enlaces */
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Icono dentro de los botones */
+.main-function-button svg {
+  width: 80px;
+  height: 80px;
+  fill: white;
+  flex-shrink: 0;
+  transition: transform var(--transition-normal);
+}
+
+/* Hover de los botones grandes */
+.main-function-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--shadow-hover);
+}
+
+/* Botón en estado activo (presionado) */
+.main-function-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--shadow-soft);
+}
+
+/* ==========================================================================
+/* PIE DE PÁGINA Y ENLACES
+/* DIRECTORIO (PACIENTE) Y CAMBIO DE CONTRASEÑA (ADMIN)
+/* ========================================================================== */
+
+/* Pie de página: enlace al directorio */
+.directory-link,
+.change-password-link {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.directory-link a,
+.change-password-link a {
+  color: var(--primary-color);
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition:
+    color var(--transition-fast),
+    transform var(--press-duration) var(--press-transition);
+}
+
+/* Enlace cuando se interactúa */
+/* Pseudo-elemento para el subrayado expansivo animado en el hover */
+.directory-link a::after,
+.change-password-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  transition: width var(--transition-normal);
+}
+
+/* Expande la linea de izquierda a derecha hasta cubrir todo el ancho del enlace */
+.directory-link a:hover::after,
+.change-password-link a:hover::after {
+  width: 100%;
+}
+
+/* Estado activo del enlace (Feedback de presión) */
+.directory-link a:active,
+.change-password-link a:active {
+  transform: scale(var(--press-scale));
+}
+
+/* ==========================================================================
+/* MODAL PARA EL CAMBIO DE CONTRASEÑA DEL ADMIN
+/* ========================================================================== */
+
+.modal-content.admin-change-password {
+  width: 550px;
+}
+
+.modal-buttons.admin-modal {
+  margin-top: 60px;
+}

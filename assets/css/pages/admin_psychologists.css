@@ -7,16 +7,21 @@
 /* CONTENEDORES PRINCIPALES Y ESTRUCTURA DE DISEÑO (LAYOUT)
 /* ========================================================================== */
 
-.card-ps-management {
+.psychologist-management-card {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 0; /* Unión perfecta la barra de pestañas y el contenedor */
+  gap: 0; /* Unión de la barra de pestañas y el contenedor */
   width: 100%;
   margin-bottom: 0;
   padding: 30px;
   background: var(--secondary-bg);
   border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.psychologist-management-card .tab-container {
+  min-height: 0;
 }
 
 .table-psychologists-card {
@@ -31,77 +36,8 @@
   background-color: var(--secondary-bg);
   border-radius: 16px;
   overflow: visible !important;
+  box-shadow: var(--shadow-soft);
 }
-
-/* ==========================================================================
-/* SISTEMA DE INTERFAZ POR PESTAÑAS (TABS CONTROLS)
-/* ========================================================================== */
-
-.tabs-ps-management {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 0;
-}
-
-.tabs-header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: normal;
-  color: var(--tab-text);
-  background: var(--tab-color);
-  border: 1px solid var(--tab-color);
-  border-bottom: none; /* Permite unión visual sobre el contenedor principal */
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.tab-btn.active {
-  font-weight: bold;
-  color: white;
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  box-shadow: var(--tab-shadow);
-}
-
-/* ==========================================================================
-/* CONTENEDORES DE BLOQUES DE CONTENIDO (TAB VIEWPORTS)
-/* ========================================================================== */
-
-.tab-container-ps {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 20px;
-  background: transparent;
-  border: 2px solid var(--primary-color);
-  /* Manejo de desbordamientos y zonas de scroll interno */
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-/* Controladores de visibilidad de estados alternados mediante JS */
-.tab-content {
-  display: none;
-  flex-direction: column;
-  margin: 0;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* ==========================================================================
-/* ESTRUCTURA INTERNA DE FORMULARIOS Y CASILLAS (FORM LAYOUT)
-/* ========================================================================== */
 
 .psychologist-form-container {
   display: flex;
@@ -133,7 +69,7 @@
   text-align: left;
 }
 
-.divider-line {
+.line-h-psychologists {
   width: 100%;
   margin: 20px 0;
   border: none;
@@ -141,7 +77,7 @@
 }
 
 /* ==========================================================================
-/* FILAS DINÁMICAS Y COMPONENTES DE SELECCIÓN (SPECIALTIES FLOW)
+/* FILAS DINÁMICAS Y COMPONENTES DE SELECCIÓN
 /* ========================================================================== */
 
 .specialty-row {
@@ -189,7 +125,7 @@
 /* ========================================================================== */
 
 /* Botón: agregar especialidad */
-.btn-add-specialty {
+.add-specialty-button {
   box-sizing: border-box;
   width: 120px;
   padding: 10px 16px;
@@ -204,22 +140,22 @@
   transition: all 0.2s ease-in-out;
 }
 
-.btn-add-specialty:hover {
+.add-specialty-button:hover {
   background: var(--green-bg-btn);
   border: 1px solid var(--green-bg-btn);
   box-shadow: var(--hover-shadow-input);
 }
 
-.btn-add-specialty:focus {
+.add-specialty-button:focus {
   outline: none; /* Quita el borde/halo que pone el navegador por defecto */
 }
 
-.btn-add-specialty:active {
+.add-specialty-button:active {
   transform: scale(var(--press-scale));
 }
 
 /* Botón principal: Registrar cambios / Crear cuenta del nuevo psicólogo */
-.btn-register {
+.register-psychology-button {
   box-sizing: border-box;
   display: block;
   margin: 40px 0 0 auto; /* Empuja el botón al extremo inferior derecho */
@@ -238,12 +174,12 @@
     box-shadow var(--transition-normal);
 }
 
-.btn-register:hover {
+.register-psychology-button:hover {
   transform: scale(var(--hover-scale-strong));
   box-shadow: var(--hover-shadow);
 }
 
-.btn-register:active {
+.register-psychology-button:active {
   transform: scale(var(--press-scale));
   box-shadow: var(--soft-shadow);
 }

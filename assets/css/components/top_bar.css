@@ -1,0 +1,65 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LA TOP-BAR DE EN CADA PÁGINA (NAVEGACIÓN INTERNA)
+/* ========================================================================== */
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Título de la página */
+.top-bar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Iconos */
+.icon-title,
+.icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: var(--primary-color);
+}
+
+/* Icono en el retorno en top-bar */
+.icon {
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Botón de retorno */
+.top-bar .return-button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: underline;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
+/* Estados dinámicos del top-bar */
+.top-bar .return-button:hover {
+  transform: scale(var(--hover-scale-soft));
+}
+
+.top-bar .return-button:hover .icon {
+  transform: scale(var(--hover-scale-strong));
+}
+
+/* Botón en estado activo (presionado) */
+.top-bar .return-button:active {
+  transform: scale(var(--press-scale));
+}

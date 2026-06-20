@@ -1,0 +1,46 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS DE LAS CAJAS DE MENSAJES (ÉXITO Y ERRORES)
+/* ========================================================================== */
+
+.error-box,
+.success-box {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ERROR */
+.error-box {
+  background-color: var(--error-bg);
+  border-left: 4px solid var(--error-border);
+  color: var(--error-text);
+}
+
+/* ÉXITO */
+.success-box {
+  background-color: var(--success-bg);
+  border-left: 4px solid var(--success-border);
+  color: var(--success-text);
+}
+
+/* Fuerza la desaparición completa de las cajas de error / éxito cuando tienen la clase hidden */
+.error-box.hidden,
+.success-box.hidden {
+  display: none;
+}
+
+/* Input nativo en estado fallido */
+.field-input.input-error input {
+  border: 2px solid var(--error-border);
+  box-shadow: 0 0 0 2px var(--box-shadow-input-error);
+}
+
+/* Dropdown personalizado en estado fallido */
+.dropdown.input-error .dropdown-selected {
+  border: 2px solid var(--error-border);
+  box-shadow: 0 0 0 2px var(--box-shadow-input-error);
+}
