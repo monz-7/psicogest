@@ -47,7 +47,7 @@ Herramienta de versionamiento: Git y GitHub
 
 ## Fecha: 18 de noviembre / 2026
 
-### 🏷️ ETIQUETA (TAG) DE COMMITS = Avance 18/11/2026
+### 🏷️ ETIQUETA (TAG) DE COMMITS = Avance 18-11-2026
 
 ### Actividades desarrolladas
 
