@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2026 a las 15:16:17
+-- Tiempo de generación: 18-11-2026 a las 20:14:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,48 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `psicogest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `uuid_appointment` char(36) NOT NULL,
+  `uuid_psychologist` char(36) NOT NULL,
+  `uuid_patient` char(36) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `type` enum('Presencial','Virtual') NOT NULL,
+  `status` enum('Programada','Cumplida','Incumplida','Cancelada','Sin asignar') NOT NULL,
+  `reason` varchar(255) NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `cancellation_reason` enum('Enfermedad','Problemas personales','Valor muy alto','No alcanzo a llegar','Me queda muy lejos','Tengo problemas de conexión','Voy a agendar otra cita después','La quiero con otro psicólogo(a)','Otro','Prefiero no decirlo') DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `availability`
+--
+
+CREATE TABLE `availability` (
+  `uuid_availability` char(36) NOT NULL,
+  `uuid_psychologist` char(36) NOT NULL,
+  `type` enum('Habitual','Especial') NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `session_duration` int(11) NOT NULL,
+  `session_interval` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -43,15 +85,51 @@ CREATE TABLE `credential` (
 --
 
 INSERT INTO `credential` (`uuid_credential`, `username`, `email`, `password`, `role`, `status`, `created_at`, `updated_at`) VALUES
-('0efb3f2a-d598-41b7-8006-fee2d2b22f7e', 'ti1002364985', 'susana.paciente@correo.com', '$2y$10$WqaWW1HPIewUkRzi.R197OBCkvOhajYIribAJdeSyQKsF3eiTVw4K', 'paciente', 'activo', '2026-06-20 06:42:20', '2026-06-20 07:09:04'),
-('33680cd3-59d3-4e1a-a6ce-67e1f0e6c360', 'cc1002564872', 'bruno.casta@correo.com', '$2y$10$D.D2SB1peINpych5PhmjDuAgVDM4/olwIY4YhBdwj0OQ5rnFlzy2G', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 08:12:24'),
+('0efb3f2a-d598-41b7-8006-fee2d2b22f7e', 'ti1002364985', 'susana.paciente@correo.com', '$2y$10$0iiCZbysB3MixnzddWBtQubWyoUEljUZWN3hdMs9bgbp/Bo.uw8l2', 'paciente', 'inactivo', '2026-06-20 06:42:20', '2026-06-24 15:10:01'),
+('33680cd3-59d3-4e1a-a6ce-67e1f0e6c360', 'cc1002564872', 'bruno.casta@correo.com', '$2y$10$84kIxTm4r1L2WETleThWc.6z0RmBVQ7CZIp6zpP5ddMkuWvtemPp.', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-09-18 14:36:56'),
 ('73047a60-0cb1-42c3-8262-425ee67dae68', 'cc42569489', 'analia.paciente@correo.com', '$2y$10$EfG5.FNnpp52FGXJzCkaEebSsqictaNexw4FqCHJE6aTwZivw1st.', 'paciente', 'activo', '2026-06-20 06:47:02', '2026-06-20 07:04:13'),
-('730c6e49-4021-4fd4-b3bb-2977da4b4283', 'cc1018965231', 'santiago.botero@correo.com', '$2y$10$J.RbOh3bZKM9M3N3Tq3g8uaRPOMEO9P5yfpnz.BsDKzkXibZajGse', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 08:12:58'),
-('7d969cee-8e0f-4b40-8c0f-3d196892202c', 'cc45123978', 'amelia.perez@correo.com', '$2y$10$lsS52Z3sO.r/H8CIqfpIkOJdTn/McKRxXNUeWPAVqdy8O8MNaJpn2', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 08:11:05'),
-('8cecff6d-8a7c-4f46-91f4-d815ca9978c5', 'paPN4561230', 'juan.paciente@correo.com', '$2y$10$/4frGRA27Q36f8F8EoEoCuilWIxMROI0APEcRyzLixbFMMjsvMgSq', 'paciente', 'activo', '2026-06-05 11:05:11', '2026-06-20 08:14:02'),
-('9e04f4cc-7785-4c56-96b2-371a4101569f', 'admin', 'admin@psicogest.com', '$2y$10$ulUEoqdcG.QFoYKMC0BtaOwNmQ07xfJrwZZORNSBgy7whH88o4r12', 'admin', 'activo', '2026-06-05 10:25:57', '2026-06-05 10:25:57'),
-('cb6983da-fe7f-4ca8-81d7-5f8e570e2267', 'cc1006584972', 'mariana.paciente@correo.com', '$2y$10$hYywhEt34AvRIIQUChcbkumTsmGT0P6PK1o4qcIXivcT/GMqBsGmW', 'paciente', 'activo', '2026-06-05 17:14:51', '2026-06-20 08:04:38'),
-('fde67efe-f061-419a-ac9a-2f9043071ddd', 'cc18963254', 'bmaria.suaza@correo.com', '$2y$10$Cv1PBSsv5jUti.eWZcH4QOfC9i6hqJAzkf82L5GE0JXoxFCVUIVrK', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 08:11:45');
+('730c6e49-4021-4fd4-b3bb-2977da4b4283', 'cc1018965231', 'santiago.botero@gmail.com', '$2y$10$J.RbOh3bZKM9M3N3Tq3g8uaRPOMEO9P5yfpnz.BsDKzkXibZajGse', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-24 15:15:04'),
+('7d969cee-8e0f-4b40-8c0f-3d196892202c', 'cc45123978', 'amelia.perez@correo.com', '$2y$10$qtv/0cA3wK.x107OTuO9Q.NVMRT5SOHiZ/rAYx1e4H.euMxEm3GGW', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 18:03:22'),
+('8cecff6d-8a7c-4f46-91f4-d815ca9978c5', 'paPN4561230', 'juan.paciente@correo.com', '$2y$10$2huC8RDne4ROaxBoijSQmO0Dd4TEZKrXP8YMkjbXBORNOeMQ1Pgtq', 'paciente', 'activo', '2026-06-05 11:05:11', '2026-09-18 14:38:06'),
+('9e04f4cc-7785-4c56-96b2-371a4101569f', 'admin', 'admin@psicogest.com', '$2y$10$dahU0Qfq8H4XqBX3FLvD3Oyv7RFXyubEbPNPEPZjMvgFzDkXeVGR2', 'admin', 'activo', '2026-06-05 10:25:57', '2026-09-18 14:39:38'),
+('cb6983da-fe7f-4ca8-81d7-5f8e570e2267', 'cc1006584972', 'mariana@gmail.com', '$2y$10$hYywhEt34AvRIIQUChcbkumTsmGT0P6PK1o4qcIXivcT/GMqBsGmW', 'paciente', 'activo', '2026-06-05 17:14:51', '2026-06-24 14:49:44'),
+('fde67efe-f061-419a-ac9a-2f9043071ddd', 'cc18963254', 'bmaria.suaza@correo.com', '$2y$10$Cv1PBSsv5jUti.eWZcH4QOfC9i6hqJAzkf82L5GE0JXoxFCVUIVrK', 'psicologo', 'activo', '2026-06-05 10:52:04', '2026-06-20 16:42:09');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horary`
+--
+
+CREATE TABLE `horary` (
+  `uuid_horary` char(36) NOT NULL,
+  `uuid_availability` char(36) NOT NULL,
+  `day_of_week` enum('Lun','Mar','Mier','Jue','Vie','Sab','Dom') NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notification`
+--
+
+CREATE TABLE `notification` (
+  `uuid_notification` char(36) NOT NULL,
+  `uuid_user_profile` char(36) NOT NULL,
+  `uuid_appointment` char(36) NOT NULL,
+  `type` enum('Confirmación','Recordatorio','Novedad') NOT NULL,
+  `message_method` enum('WhatsApp','Email') NOT NULL,
+  `subject` varchar(150) NOT NULL,
+  `body` text NOT NULL,
+  `sent_to_email` varchar(255) DEFAULT NULL,
+  `sent_to_phone` varchar(20) DEFAULT NULL,
+  `status` enum('Pendiente','Enviado','Fallido') NOT NULL,
+  `sent_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -74,9 +152,9 @@ CREATE TABLE `patient` (
 
 INSERT INTO `patient` (`uuid_patient`, `uuid_user_profile`, `birth_date`, `created_at`, `updated_at`, `country`) VALUES
 ('5cbeaf5e-ab1c-42cb-aa02-501b20c27652', '8d677237-d80d-48cc-964c-b45156777f7a', '1974-03-30', '2026-06-20 06:47:02', '2026-06-20 07:07:32', 'México'),
-('af9cc89f-475e-484e-abe8-0dcb11862f51', '5875519b-601a-4a9e-a470-e843d03d0f24', '2013-02-01', '2026-06-20 06:42:20', '2026-06-20 06:42:20', 'Colombia'),
-('da527b98-9027-49b6-a31f-b39c2af7cf78', '9042d7da-dacf-4022-956f-5af3a2f60ec6', '1996-05-12', '2026-06-05 17:18:21', '2026-06-20 07:57:36', 'Colombia'),
-('f511a31f-258b-4117-8e63-d3d6d534f541', 'a741e9e5-a15c-4854-99c8-8759abe34094', '1978-05-05', '2026-06-05 11:07:14', '2026-06-18 10:10:56', 'Panamá');
+('af9cc89f-475e-484e-abe8-0dcb11862f51', '5875519b-601a-4a9e-a470-e843d03d0f24', '2013-06-13', '2026-06-20 06:42:20', '2026-06-20 18:05:19', 'Colombia'),
+('da527b98-9027-49b6-a31f-b39c2af7cf78', '9042d7da-dacf-4022-956f-5af3a2f60ec6', '1997-05-12', '2026-06-05 17:18:21', '2026-06-24 14:49:44', 'Argentina'),
+('f511a31f-258b-4117-8e63-d3d6d534f541', 'a741e9e5-a15c-4854-99c8-8759abe34094', '1978-05-05', '2026-06-05 11:07:14', '2026-06-20 09:52:17', 'Panamá');
 
 -- --------------------------------------------------------
 
@@ -98,8 +176,8 @@ CREATE TABLE `psychologist` (
 --
 
 INSERT INTO `psychologist` (`uuid_psychologist`, `uuid_user_profile`, `license_number`, `session_duration`, `created_at`, `updated_at`) VALUES
-('155e64ac-3858-44fc-8f02-f26081303275', '205fbf07-6aaa-4e0e-8d94-35395440bf72', '1561165', 50, '2026-06-05 10:57:55', '2026-06-18 07:42:35'),
-('310bd03a-11e1-42ef-b25e-ba984cefebb6', 'a692fb6b-d968-412d-855b-3b87ad3ea24f', '1156540', 45, '2026-06-05 10:57:55', '2026-06-18 07:42:41'),
+('155e64ac-3858-44fc-8f02-f26081303275', '205fbf07-6aaa-4e0e-8d94-35395440bf72', '1561168', 50, '2026-06-05 10:57:55', '2026-09-18 13:39:31'),
+('310bd03a-11e1-42ef-b25e-ba984cefebb6', 'a692fb6b-d968-412d-855b-3b87ad3ea24f', '1156532', 45, '2026-06-05 10:57:55', '2026-06-24 14:44:18'),
 ('7ba15fd8-95dd-47d4-a846-d0ff0d505dc5', '00efe4d4-8896-4e36-a3c4-75833b017da1', '1561167', 60, '2026-06-05 10:57:55', '2026-06-20 07:21:54'),
 ('fa1a8676-ceed-4c1c-93a3-6bc877380814', 'e609f7be-c5d8-44aa-823e-17fdcf0fcf96', '1561164', 50, '2026-06-05 10:57:55', '2026-06-18 07:42:51');
 
@@ -126,10 +204,29 @@ INSERT INTO `psychologist_specialty` (`uuid_psychologist`, `uuid_specialty`) VAL
 ('310bd03a-11e1-42ef-b25e-ba984cefebb6', 'e731a111-a4b6-43a4-82af-7c928ff4fce0'),
 ('310bd03a-11e1-42ef-b25e-ba984cefebb6', 'f2ee4107-5fbd-49bd-a101-98b14782e21e'),
 ('7ba15fd8-95dd-47d4-a846-d0ff0d505dc5', '201b1563-5dc9-458b-8bd1-71458f343081'),
-('7ba15fd8-95dd-47d4-a846-d0ff0d505dc5', 'f2ee4107-5fbd-49bd-a101-98b14782e21e'),
 ('fa1a8676-ceed-4c1c-93a3-6bc877380814', 'a0c64975-c73c-4dce-a2ba-3519b76c0f97'),
 ('fa1a8676-ceed-4c1c-93a3-6bc877380814', 'cca7ae69-95e1-4a60-b916-de4dc9decb8d'),
 ('fa1a8676-ceed-4c1c-93a3-6bc877380814', 'f2ee4107-5fbd-49bd-a101-98b14782e21e');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `settings`
+--
+
+CREATE TABLE `settings` (
+  `item` varchar(50) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `settings`
+--
+
+INSERT INTO `settings` (`item`, `value`, `updated_at`) VALUES
+('appointment_price', '80000', '2026-11-18 18:58:02'),
+('clinic_address', 'CL 10 #43A - 25, TORRE MÉDICA / CONSULTORIO 502 - EL POBLADO, MEDELLÍN', '2026-11-18 18:58:22');
 
 -- --------------------------------------------------------
 
@@ -181,17 +278,32 @@ CREATE TABLE `user_profile` (
 INSERT INTO `user_profile` (`uuid_user_profile`, `uuid_credential`, `names`, `surnames`, `doc_type`, `doc_number`, `phone_number`, `created_at`, `updated_at`) VALUES
 ('00efe4d4-8896-4e36-a3c4-75833b017da1', '730c6e49-4021-4fd4-b3bb-2977da4b4283', 'Santiago', 'Botero Calle', 'cc', '1018965231', '+573008596312', '2026-06-05 10:55:47', '2026-06-20 07:47:32'),
 ('107c6193-6265-4474-840b-5e17b9d1639b', '9e04f4cc-7785-4c56-96b2-371a4101569f', 'Admin', 'Sistema', 'cc', '1000000000', '+573000000000', '2026-06-05 10:28:35', '2026-06-08 09:06:05'),
-('205fbf07-6aaa-4e0e-8d94-35395440bf72', 'fde67efe-f061-419a-ac9a-2f9043071ddd', 'Beatriz María', 'Suaza Rua', 'cc', '18963254', '+573123551233', '2026-06-05 10:55:47', '2026-06-11 19:05:48'),
-('5875519b-601a-4a9e-a470-e843d03d0f24', '0efb3f2a-d598-41b7-8006-fee2d2b22f7e', 'Susana', 'Vásquez Vera', 'ti', '1002364985', '+573115694871', '2026-06-20 06:42:20', '2026-06-20 06:42:20'),
+('205fbf07-6aaa-4e0e-8d94-35395440bf72', 'fde67efe-f061-419a-ac9a-2f9043071ddd', 'Beatriz María', 'Suaza Rua', 'cc', '18963254', '+573123551233', '2026-06-05 10:55:47', '2026-06-20 16:42:09'),
+('5875519b-601a-4a9e-a470-e843d03d0f24', '0efb3f2a-d598-41b7-8006-fee2d2b22f7e', 'Susana', 'Vásquez Vera', 'ti', '1002364985', '+573115694871', '2026-06-20 06:42:20', '2026-06-20 18:05:19'),
 ('8d677237-d80d-48cc-964c-b45156777f7a', '73047a60-0cb1-42c3-8262-425ee67dae68', 'Analía', 'Viña Santana', 'cc', '42569489', '+522221234567', '2026-06-20 06:47:02', '2026-06-20 07:04:13'),
-('9042d7da-dacf-4022-956f-5af3a2f60ec6', 'cb6983da-fe7f-4ca8-81d7-5f8e570e2267', 'Mariana', 'Robledo Suaza', 'cc', '1006584972', '+573210564112', '2026-06-05 17:17:13', '2026-06-20 07:57:36'),
-('a692fb6b-d968-412d-855b-3b87ad3ea24f', '33680cd3-59d3-4e1a-a6ce-67e1f0e6c360', 'Bruno', 'Casta Brentt', 'cc', '1002564872', '+573002369845', '2026-06-05 10:55:47', '2026-06-08 09:06:38'),
-('a741e9e5-a15c-4854-99c8-8759abe34094', '8cecff6d-8a7c-4f46-91f4-d815ca9978c5', 'Juan', 'Montero López', 'pa', 'PN4561230', '+50761234567', '2026-06-05 11:06:21', '2026-06-17 15:20:22'),
-('e609f7be-c5d8-44aa-823e-17fdcf0fcf96', '7d969cee-8e0f-4b40-8c0f-3d196892202c', 'Amelia', 'Peréz Molina', 'cc', '45123978', '+573012659847', '2026-06-05 10:55:47', '2026-06-18 10:11:49');
+('9042d7da-dacf-4022-956f-5af3a2f60ec6', 'cb6983da-fe7f-4ca8-81d7-5f8e570e2267', 'Mariana', 'Robledo Suaza', 'cc', '1006584972', '+573002369845', '2026-06-05 17:17:13', '2026-06-24 15:15:27'),
+('a692fb6b-d968-412d-855b-3b87ad3ea24f', '33680cd3-59d3-4e1a-a6ce-67e1f0e6c360', 'Bruno', 'Casta Brentt', 'cc', '1002564872', '+573002369845', '2026-06-05 10:55:47', '2026-06-24 15:15:43'),
+('a741e9e5-a15c-4854-99c8-8759abe34094', '8cecff6d-8a7c-4f46-91f4-d815ca9978c5', 'Juan', 'Montero López', 'pa', 'PN4561230', '+573012564879', '2026-06-05 11:06:21', '2026-06-24 15:16:33'),
+('e609f7be-c5d8-44aa-823e-17fdcf0fcf96', '7d969cee-8e0f-4b40-8c0f-3d196892202c', 'Amelia', 'Peréz Molina', 'cc', '45123978', '+573012659848', '2026-06-05 10:55:47', '2026-06-20 17:53:20');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`uuid_appointment`),
+  ADD KEY `fk_Appointment_Psychologist_idx` (`uuid_psychologist`),
+  ADD KEY `fk_Appointment_Patient_idx` (`uuid_patient`);
+
+--
+-- Indices de la tabla `availability`
+--
+ALTER TABLE `availability`
+  ADD PRIMARY KEY (`uuid_availability`),
+  ADD KEY `uuid_psychologist` (`uuid_psychologist`);
 
 --
 -- Indices de la tabla `credential`
@@ -200,6 +312,21 @@ ALTER TABLE `credential`
   ADD PRIMARY KEY (`uuid_credential`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indices de la tabla `horary`
+--
+ALTER TABLE `horary`
+  ADD PRIMARY KEY (`uuid_horary`),
+  ADD KEY `fk_Horary_Availability_idx` (`uuid_availability`);
+
+--
+-- Indices de la tabla `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`uuid_notification`),
+  ADD KEY `fk_uuid_user_profile` (`uuid_user_profile`),
+  ADD KEY `fk_uuid_appointment_idx` (`uuid_appointment`);
 
 --
 -- Indices de la tabla `patient`
@@ -224,6 +351,12 @@ ALTER TABLE `psychologist_specialty`
   ADD KEY `fk_pss_specialty` (`uuid_specialty`);
 
 --
+-- Indices de la tabla `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`item`);
+
+--
 -- Indices de la tabla `specialty`
 --
 ALTER TABLE `specialty`
@@ -241,6 +374,32 @@ ALTER TABLE `user_profile`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `fk_Appointment_Patient` FOREIGN KEY (`uuid_patient`) REFERENCES `patient` (`uuid_patient`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Appointment_Psychologist` FOREIGN KEY (`uuid_psychologist`) REFERENCES `psychologist` (`uuid_psychologist`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `availability`
+--
+ALTER TABLE `availability`
+  ADD CONSTRAINT `fk_uuid_psychologist` FOREIGN KEY (`uuid_psychologist`) REFERENCES `psychologist` (`uuid_psychologist`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `horary`
+--
+ALTER TABLE `horary`
+  ADD CONSTRAINT `fk_Horary_Availability` FOREIGN KEY (`uuid_availability`) REFERENCES `availability` (`uuid_availability`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `fk_uuid_appointment` FOREIGN KEY (`uuid_appointment`) REFERENCES `appointment` (`uuid_appointment`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_uuid_user_profile` FOREIGN KEY (`uuid_user_profile`) REFERENCES `user_profile` (`uuid_user_profile`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `patient`
