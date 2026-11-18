@@ -14,6 +14,11 @@ const menus = {
       href: "../pages/home.php",
     },
     {
+      text: "CONFIGURACIÓN",
+      icon: "config",
+      href: "../pages/admin_config.php",
+    },
+    {
       text: "PACIENTES",
       icon: "patients",
       href: "../pages/admin_patients.php",
