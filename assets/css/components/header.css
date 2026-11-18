@@ -119,6 +119,23 @@
   gap: 10px;
 }
 
+.config-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform var(--press-duration) var(--press-transition);
+}
+
 .user-role {
   height: 36px;
   padding: 5px 10px;
@@ -163,7 +180,16 @@
   transform: scale(var(--hover-scale-strong));
 }
 
-.logout-button:active {
+/* Estados e interacciones del botón de configuración */
+.config-button:hover {
+  color: var(--primary-color);
+  background: transparent;
+  border: 2px solid var(--primary-color);
+}
+
+/* Estado activo compartido: cierre de sesión y configuración */
+.logout-button:active,
+.config-button:active {
   transform: scale(var(--press-scale));
 }
 

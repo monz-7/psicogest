@@ -186,6 +186,11 @@ document.addEventListener("DOMContentLoaded", () => {
     roleEl.textContent = roleLabels[role] || "USUARIO";
   }
 
+  // Nuevo: botón de configuración solo para admin
+  if (role === "admin" && roleEl) {
+    setupAdminConfig(roleEl);
+  }
+
   // Restricciones estructurales específicas para Administradores
   const actionsButtons = container.querySelector(".action-buttons");
 
@@ -250,6 +255,24 @@ function setupTheme() {
     // Si no, marca el modo claro como activo
     activateLight();
   }
+}
+
+// Botón de configuración (solo admin)
+function setupAdminConfig(roleEl) {
+  const configButton = document.createElement("a");
+  configButton.id = "config-button";
+  configButton.className = "config-button";
+  configButton.href = "../pages/admin_config.php";
+  configButton.setAttribute("aria-label", "Configuración del sistema");
+  configButton.innerHTML = `
+    <svg class="icon" aria-hidden="true">
+      <use href="#config"></use>
+    </svg>
+    CONFIGURACIÓN
+  `;
+
+  // "beforebegin" lo pone justo antes del rol, es decir, a su izquierda
+  roleEl.insertAdjacentElement("beforebegin", configButton);
 }
 
 // Sistema de notificaciones (hardcodeadas)
