@@ -8,6 +8,7 @@
 
 /* Páginas */
 
+@import url("../pages/admin_config.css");
 @import url("../pages/admin_patients.css");
 @import url("../pages/admin_psychologists.css");
 @import url("../pages/agenda.css");

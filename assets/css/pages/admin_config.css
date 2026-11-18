@@ -1,0 +1,185 @@
+/* ==========================================================================
+/* ARCHIVO: ESTILOS PARA LA PÁGINA DE CONFIGURACIÓN DEL SISTEMA (VISTA ADMIN)
+/* ========================================================================== */
+
+/* ==========================================================================
+/* CONTENEDOR
+/* ========================================================================== */
+
+.config-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  margin: 20px 0;
+  background-color: var(--secondary-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Línea horizontal divisora */
+.line-h-config {
+  width: 840px;
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--gray-border);
+}
+
+/* ==========================================================================
+   GRILLA Y DISEÑO DE BLOQUES DE CONFIGURACIONES
+   ========================================================================== */
+
+/* Contenedor principal de bloques de configuraciones */
+.items-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  width: 840px;
+}
+
+/* Contenedor vertical de tarjetas de cada item de configuración */
+.item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Título de cada bloque de configuración */
+.item-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* ==========================================================================
+   TARJETAS DE ITEM DE CONFIGURACIÓN
+   ========================================================================== */
+
+/* Tarjeta individual del item de configuración */
+.item-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 400px;
+  height: 250px;
+  padding: 20px;
+  margin: 0 0 10px;
+  color: var(--text-color);
+  background: var(--secondary-bg);
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Icono dentro de la tarjeta */
+#item-config-icon {
+  width: 100px;
+  height: 100px;
+  fill: var(--primary-color);
+}
+
+/* Valor del item dentro de la tarjeta */
+.item-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* Nota dentro del item de precio */
+.item-note {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* --- Estados interactivos de la tarjeta --- */
+.item-card:hover {
+  background: var(--primary-color);
+}
+
+.item-card:hover .item-value,
+.item-card:hover .item-note {
+  color: var(--text-button);
+}
+
+.item-card:hover #item-config-icon {
+  fill: var(--text-button);
+}
+
+/* ==========================================================================
+   BOTÓN PARA EDITAR HORARIOS 
+   ========================================================================== */
+
+.config-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  width: 840px;
+}
+.edit-config-button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 410px;
+  height: 46px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--text-button);
+  background: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+/* Icono interno del botón de edición */
+.edit-config-button svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-button);
+  flex-shrink: 0;
+}
+
+/* --- Estados de pulsación y hover del botón --- */
+.edit-config-button:hover {
+  transform: scale(var(--hover-scale-strong));
+  box-shadow: var(--hover-shadow);
+}
+
+.edit-config-button:active {
+  transform: scale(var(--press-scale));
+  box-shadow: var(--soft-shadow);
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS PARA EL MENSAJE DE ÉXITO EN ESTA PÁGINA
+   ========================================================================== */
+
+#config-success-box {
+  width: 840px;
+  margin: 20px auto;
+}
