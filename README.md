@@ -43,9 +43,24 @@ Herramienta de versionamiento: Git y GitHub
 
 ---
 
+# DESARROLLO SIN ENTREGA DE EVIDENCIAS
+
+## Fecha: 18 de noviembre / 2026
+
+### 🏷️ ETIQUETA (TAG) DE COMMITS = Avance 18/11/2026
+
+### Actividades desarrolladas
+
+#### Navegación de la vista del ADMIN completa:
+
+- Edición del header y sidebar del admin para añadir botón/enlace a las configuraciones globales del sistema.
+- Diseño de la interfaz de las configuraciones globales del sistema.
+- Creación de la tabla "Settings" en la db, que guarda los items de las configuraciones globales.
+- Implementación de la funcionalidad de edición de items de las configuraciones globales del sistema (tarifa/precio de la cita y dirección del consultorio).
+
 # EVIDENCIAS DESARROLLADAS
 
-## Semana de entrega: 16 de junio al 23 de junio.
+## Semana de entrega: 16 de junio al 23 de junio / 2026.
 
 ### 🏷️ ETIQUETA (TAG) DE COMMITS = Evidencias_GA7-220501096-AA4-EV03_y_GA7-220501096-AA5-EV01
 
@@ -69,7 +84,7 @@ Herramienta de versionamiento: Git y GitHub
 
 - Únicamente correcciones al código y restructuración de archivos y carpetas que componen el módulo de inicio de sesión funcional, el cual ya estaba implementado desde la entrega anterior.
 
-## Semana de entrega: 02 de junio al 09 de junio.
+## Semana de entrega: 02 de junio al 09 de junio / 2026.
 
 ### 🏷️ ETIQUETA (TAG) DE COMMITS = Evidencias_GA7-220501096-AA4-EV01_y_GA7-220501096-AA3-EV02
 
